@@ -79,7 +79,6 @@ func getPeers() map[string][]string {
 	for _, peer := range data.Peers {
 		peers[peer.Callsign] = append(peers[peer.Callsign], peer.IPAddress, peer.LinkedModule, peer.ConnectTime, peer.LastHeardTime)
 	}
-	fmt.Print(peers)
 	return peers
 }
 
