@@ -1,0 +1,60 @@
+<!--index.html-->
+
+<!-- Embed the header.html template at this location -->
+{{ template "header.html" .}}
+    <main class="flex-shrink-0">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-sm-8">
+            <table class="table table-striped table-numbered">
+              <thead>
+                <tr>
+                  <td><strong>#</strong></td>
+                  <td><strong>Callsign</strong></td>
+                  <td><strong>Suffix</strong></td>
+                  <td><strong>Link / Peer</strong></td>
+                  <td><strong>On Module</strong></td>
+                  <td><strong>Last Heard</strong></td>
+                </tr>
+              </thead>
+              <tbody>
+                {{ range $k, $v := .stations }}
+                <tr>
+                  <th scope="row"></th>
+                  <td><a href="https://www.qrz.com/db/{{ index $v 0 }}" target="_blank">{{ index $v 0 }}</td>
+                  <td>{{ index $v 1 }}</td>
+                  <td>{{ index $v 2 }}</td>
+                  <td>{{ index $v 3 }}</td>
+                  <td>{{ index $v 5 }}</td>
+                </tr>
+                {{ end }}
+              </tbody>
+            </table>
+          </div>
+          <div class="col-sm-4">
+            <table class="table">
+              <thead>
+                <th class="text-center">Modules in Use</th>
+              </thead>
+              {{ range $k, $v := .modules}}
+              <table class="table">
+                <thead>
+                  <th>
+                    {{ $k }}
+                  </th>
+                </thead>
+                <tbody>
+                  {{ range $v }}
+                  <tr>
+                    <td>{{ . }}</td>
+                  </tr>
+                {{ end }}
+                </tbody>
+              </table>
+              {{ end }}
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+{{ template "footer.html" .}}

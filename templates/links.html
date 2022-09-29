@@ -1,0 +1,30 @@
+{{ template "header.html" .}}
+    <main class="flex-shrink-0">
+      <div class="container">
+        <div class="row justify-content-md-center">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <td><strong>Callsign</strong></td>
+                  <td><strong>IP Address</strong></td>
+                  <td><strong>Linked Module</strong></td>
+                  <td><strong>Protocol</strong></td>
+                  <td><strong>Connect Time</strong></td>
+                  <td><strong>Last Heard Time</strong></td>
+                </tr>
+              </thead>
+              <tbody>
+                {{ range $k, $v := .nodes }}
+                <tr>
+                  <th scope="row">{{ $k }}</th>
+                  {{ range $v }}
+                  <td>{{ . }}</td>
+                  {{ end }}
+                </tr>
+                {{ end }}
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </main>
+{{ template "footer.html" .}}
