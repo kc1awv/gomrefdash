@@ -4,14 +4,13 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![GPL License][license-shield]][license-url]
 
 
 <br />
 <div align="center">
   <a href="https://github.com/kc1awv/gomrefdash">
-    <img src="static/m17_reflector.svg" alt="Logo" width="80" height="258">
+    <img src="static/m17_reflector.svg" alt="Logo">
   </a>
 
 <h3 align="center">gomrefdash</h3>
@@ -171,7 +170,7 @@ Project Link: [https://github.com/kc1awv/gomrefdash](https://github.com/kc1awv/g
 [issues-url]: https://github.com/kc1awv/gomrefdash/issues
 [license-shield]: https://img.shields.io/github/license/kc1awv/gomrefdash.svg?style=for-the-badge
 [license-url]: https://github.com/kc1awv/gomrefdash/blob/master/LICENSE.txt
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: static/screenshot.png
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [Go.dev]: https://img.shields.io/github/go-mod/go-version/kc1awv/gomrefdash?style=for-the-badge
