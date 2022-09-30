@@ -147,7 +147,7 @@ Distributed under the GPL 3.0 License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-* M17 Project Discord - * [![Discord][Discord][Discord-url]]
+* M17 Project Discord - [![Discord][Discord]][Discord-url]
 
 Project Link: [https://github.com/kc1awv/gomrefdash](https://github.com/kc1awv/gomrefdash)
 
