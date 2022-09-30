@@ -16,7 +16,7 @@
               </thead>
               <tbody>
                 {{ range $k, $v := .stations }}
-                  {{ if lt $k .lastheard }}
+                  {{ if lt $k 20 }}
                     <tr>
                       <th scope="row"></th>
                       <td><a href="https://www.qrz.com/db/{{ index $v 0 }}" target="_blank">{{ index $v 0 }}</td>
