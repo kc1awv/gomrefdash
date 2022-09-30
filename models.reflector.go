@@ -36,8 +36,8 @@ type Reflector struct {
 }
 
 func getReflector() Reflector {
-	xmlFile, err := os.Open("mrefd.xml")
-	// xmlFile, err := os.Open("/var/log/mrefd.xml")
+	// xmlFile, err := os.Open("mrefd.xml")
+	xmlFile, err := os.Open("/var/log/mrefd.xml")
 	if err != nil {
 			fmt.Println(err)
 	}
