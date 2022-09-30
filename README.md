@@ -96,9 +96,9 @@ Install Go 1.19+ according to your platform, directions can be found [here](http
    go build -o gomrefdash
    ```
 3. Copy .env.sample and edit to your environment
-  ```sh
-  cp .env.sample .env
-  ```
+    ```sh
+    cp .env.sample .env
+    ```
 
 4. Run gomrefdash
    ```sh
