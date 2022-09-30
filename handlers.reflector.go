@@ -17,10 +17,11 @@ func showIndexPage(c *gin.Context) {
     http.StatusOK,
     "index.html",
     gin.H{
-      "title":     "Home Page",
+      "title":     "Last Heard",
       "info":      info,
       "modules":   modules,
       "stations":  stations,
+      "lastheard": lastheard,
       "ipv4":      ipv4,
       "ipv6":      ipv6,
       "refresh":   refresh,

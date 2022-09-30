@@ -16,14 +16,16 @@
               </thead>
               <tbody>
                 {{ range $k, $v := .stations }}
-                <tr>
-                  <th scope="row"></th>
-                  <td><a href="https://www.qrz.com/db/{{ index $v 0 }}" target="_blank">{{ index $v 0 }}</td>
-                  <td>{{ index $v 1 }}</td>
-                  <td>{{ index $v 2 }}</td>
-                  <td>{{ index $v 3 }}</td>
-                  <td>{{ index $v 5 }}</td>
-                </tr>
+                  {{ if lt $k .lastheard }}
+                    <tr>
+                      <th scope="row"></th>
+                      <td><a href="https://www.qrz.com/db/{{ index $v 0 }}" target="_blank">{{ index $v 0 }}</td>
+                      <td>{{ index $v 1 }}</td>
+                      <td>{{ index $v 2 }}</td>
+                      <td>{{ index $v 3 }}</td>
+                      <td>{{ index $v 5 }}</td>
+                    </tr>
+                  {{ end }}
                 {{ end }}
               </tbody>
             </table>
