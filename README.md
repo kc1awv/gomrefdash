@@ -70,7 +70,7 @@ A dashboard written for mrefd 0.4.0+ in Go!
 
 ### Built With
 
-* [![Go][Go.dev]][Go-url]]
+* [![Go][Go.dev]][Go-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -95,7 +95,9 @@ Install Go 1.19+ according to your platform, directions can be found [here](http
    ```sh
    go build -o gomrefdash
    ```
-3. Enter your API in `config.js`
+3. Copy .env.sample and edit to your environment
+
+4. Run gomrefdash
    ```sh
    ./gomrefdash
    ```
@@ -105,7 +107,7 @@ Install Go 1.19+ according to your platform, directions can be found [here](http
 
 ## Roadmap
 
-- [ ] Beta Release
+- [x] Beta Release
 - [ ] Refresh page on log file changes, instead of a meta refresh in browser
 - [ ] Create two-column layout for Modules In Use, instead of a single column
 
