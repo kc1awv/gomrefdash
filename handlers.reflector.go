@@ -7,12 +7,13 @@ import (
 )
 
 func showIndexPage(c *gin.Context) {
-  info     := getInfo()
-  modules  := getModules()
-  stations := getStations()
-  ipv4     := os.Getenv("IPV4")
-  ipv6     := os.Getenv("IPV6")
-  refresh  := os.Getenv("REFRESH")
+  info      := getInfo()
+  modules   := getModules()
+  stations  := getStations()
+  lastheard := os.Getenv("LASTHEARD")
+  ipv4      := os.Getenv("IPV4")
+  ipv6      := os.Getenv("IPV6")
+  refresh   := os.Getenv("REFRESH")
   c.HTML(
     http.StatusOK,
     "index.html",
