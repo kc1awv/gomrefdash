@@ -2,16 +2,16 @@ package main
 
 import (
   "net/http"
-	"os"
+  "os"
   "github.com/gin-gonic/gin"
 )
 
 func showIndexPage(c *gin.Context) {
   info     := getInfo()
-	modules  := getModules()
-	stations := getStations()
-	ipv4     := os.Getenv("IPV4")
-	ipv6     := os.Getenv("IPV6")
+  modules  := getModules()
+  stations := getStations()
+  ipv4     := os.Getenv("IPV4")
+  ipv6     := os.Getenv("IPV6")
   refresh  := os.Getenv("REFRESH")
   c.HTML(
     http.StatusOK,
@@ -19,10 +19,10 @@ func showIndexPage(c *gin.Context) {
     gin.H{
       "title":     "Home Page",
       "info":      info,
-			"modules":   modules,
-			"stations":  stations,
-			"ipv4":      ipv4,
-			"ipv6":      ipv6,
+      "modules":   modules,
+      "stations":  stations,
+      "ipv4":      ipv4,
+      "ipv6":      ipv6,
       "refresh":   refresh,
     },
   )
@@ -31,8 +31,8 @@ func showIndexPage(c *gin.Context) {
 func showLinksPage(c *gin.Context) {
   info  := getInfo()
   nodes := getNodes()
-	ipv4  := os.Getenv("IPV4")
-	ipv6  := os.Getenv("IPV6")
+  ipv4  := os.Getenv("IPV4")
+  ipv6  := os.Getenv("IPV6")
   c.HTML(
     http.StatusOK,
     "links.html",
@@ -40,8 +40,8 @@ func showLinksPage(c *gin.Context) {
       "title": "Links",
       "info":  info,
       "nodes": nodes,
-			"ipv4":  ipv4,
-			"ipv6":  ipv6,
+      "ipv4":  ipv4,
+      "ipv6":  ipv6,
     },
   )
 }
@@ -49,8 +49,8 @@ func showLinksPage(c *gin.Context) {
 func showPeersPage(c *gin.Context) {
   info  := getInfo()
   peers := getPeers()
-	ipv4  := os.Getenv("IPV4")
-	ipv6  := os.Getenv("IPV6")
+  ipv4  := os.Getenv("IPV4")
+  ipv6  := os.Getenv("IPV6")
   c.HTML(
     http.StatusOK,
     "peers.html",
@@ -58,8 +58,8 @@ func showPeersPage(c *gin.Context) {
       "title": "Peers",
       "info":  info,
       "peers": peers,
-			"ipv4":  ipv4,
-			"ipv6":  ipv6,
+      "ipv4":  ipv4,
+      "ipv6":  ipv6,
     },
   )
 }
