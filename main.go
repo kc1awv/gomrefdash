@@ -15,6 +15,7 @@ func main() {
     log.Fatal("Error loading .env file")
   }
   
+  gin.SetMode(gin.ReleaseMode)
   router = gin.Default()
 
   router.LoadHTMLGlob("templates/*")
