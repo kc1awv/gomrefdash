@@ -21,7 +21,6 @@ func showIndexPage(c *gin.Context) {
       "info":      info,
       "modules":   modules,
       "stations":  stations,
-      "lastheard": lastheard,
       "ipv4":      ipv4,
       "ipv6":      ipv6,
       "refresh":   refresh,
