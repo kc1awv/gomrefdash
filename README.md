@@ -158,8 +158,9 @@ Project Link: [https://github.com/kc1awv/gomrefdash](https://github.com/kc1awv/g
 
 ## Acknowledgments
 
-* [Tom N7TAE](https://github.com/n7tae)
-* [Dave AC8ZD](https://github.com/dbehnke)
+* [Tom N7TAE](https://github.com/n7tae) _Creator of mrefd and inspiration for development_
+* [Dave AC8ZD](https://github.com/dbehnke) _Beta testing and great feedback_
+* edgetriggered _Teaching me finer points of Golang, help and guidance_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
