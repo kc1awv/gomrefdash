@@ -91,7 +91,7 @@ Install Go 1.19+ according to your platform, directions can be found [here](http
    ```sh
    git clone https://github.com/kc1awv/gomrefdash.git
    ```
-2. Install NPM packages
+2. Build the application
    ```sh
    go build -o gomrefdash
    ```
