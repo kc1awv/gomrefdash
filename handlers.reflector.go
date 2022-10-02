@@ -30,6 +30,7 @@ func showIndexPage(c *gin.Context) {
   ipv4      := os.Getenv("IPV4")
   ipv6      := os.Getenv("IPV6")
   refresh   := os.Getenv("REFRESH")
+  email     := os.Getenv("EMAIL")
   c.HTML(
     http.StatusOK,
     "index.html",
@@ -37,6 +38,7 @@ func showIndexPage(c *gin.Context) {
       "title":     "Last Heard",
       "version":   dver,
       "info":      info,
+      "email":     email,
       "modules":   modules,
       "stations":  stations,
       "ipv4":      ipv4,
