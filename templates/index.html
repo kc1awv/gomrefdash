@@ -3,7 +3,7 @@
       <div class="container">
         <div class="row justify-content-md-center">
           <div class="col-sm-8">
-            <table id="stations" class="table table-striped table-numbered">
+            <table id="stations" class="table table-sm table-striped table-numbered">
               <thead>
                 <tr>
                   <td><strong>#</strong></td>
@@ -15,14 +15,14 @@
                 </tr>
               </thead>
               <tbody>
-                    <tr v-for="(station, index) in stationdata.stations">
-                      <th scope="row"></th>
-                      <td><a :href="`https://www.qrz.com/db/${ station.callsign }`" target="_blank">${ station.callsign }</td>
-                      <td>${ station.callsignsuffix }</td>
-                      <td>${ station.linkpeer }</td>
-                      <td>${ station.onmodule }</td>
-                      <td>${ station.lastheard }</td>
-                    </tr>
+                <tr v-for="(station, index) in stationdata.stations">
+                  <th scope="row"></th>
+                  <td><a :href="`https://www.qrz.com/db/${ station.callsign }`" target="_blank">${ station.callsign }</td>
+                  <td>${ station.callsignsuffix }</td>
+                  <td>${ station.linkpeer }</td>
+                  <td>${ station.onmodule }</td>
+                  <td>${ station.lastheard }</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -31,19 +31,23 @@
               <thead>
                 <th class="text-center">Modules in Use</th>
               </thead>
-              <table v-for="(module, index1) in moduledata" class="table">
-                <thead>
-                  <th>
-                    ${ module.name }
-                  </th>
-                </thead>
-                <tbody>
-                  <tr v-for="(callsign, index2) in module.callsigns">
-                    <td>${ callsign }</td>
-                  </tr>
-                </tbody>
-              </table>
             </table>
+            <div class="row">
+              <div v-for="(module, index1) in moduledata" class="col-sm-6">
+                <table class="table table-sm">
+                  <thead>
+                    <th>
+                      ${ module.name }
+                    </th>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(callsign, index2) in module.callsigns">
+                      <td>${ callsign }</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>

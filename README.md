@@ -5,6 +5,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![GPL License][license-shield]][license-url]
+[![Build Status][build-shield]][build-url]
 
 
 <br />
@@ -72,6 +73,7 @@ A dashboard written for mrefd 0.4.0+ in Go!
 
 * [![Go][Go.dev]][Go-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+* [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -111,8 +113,8 @@ Install Go 1.19+ according to your platform, directions can be found [here](http
 ## Roadmap
 
 - [x] Beta Release
-- [ ] Refresh page on log file changes, instead of a meta refresh in browser
-- [ ] Create two-column layout for Modules In Use, instead of a single column
+- [x] Refresh page on log file changes, instead of a meta refresh in browser - thanks AC8ZD
+- [x] Create two-column layout for Modules In Use, instead of a single column
 - [ ] Add country flags for callsigns
 
 See the [open issues](https://github.com/kc1awv/gomrefdash/issues) for a full list of proposed features (and known issues).
@@ -176,10 +178,14 @@ Project Link: [https://github.com/kc1awv/gomrefdash](https://github.com/kc1awv/g
 [issues-url]: https://github.com/kc1awv/gomrefdash/issues
 [license-shield]: https://img.shields.io/github/license/kc1awv/gomrefdash.svg?style=for-the-badge
 [license-url]: https://github.com/kc1awv/gomrefdash/blob/master/LICENSE.txt
+[build-shield]: https://img.shields.io/github/workflow/status/kc1awv/gomrefdash/Audit?style=for-the-badge
+[build-url]: https://github.com/kc1awv/gomrefdash/actions/workflows/audit.yml
 [product-screenshot]: static/screenshot.png
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [Go.dev]: https://img.shields.io/github/go-mod/go-version/kc1awv/gomrefdash?style=for-the-badge
 [Go-url]: https://go.dev/
+[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
+[JQuery-url]: https://jquery.com 
 [Discord]: https://img.shields.io/discord/771492414120656907?style=for-the-badge
 [Discord-url]: https://discord.gg/G8zGphypf6
