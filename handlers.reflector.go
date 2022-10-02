@@ -30,6 +30,7 @@ func showIndexPage(c *gin.Context) {
   ipv4      := os.Getenv("IPV4")
   ipv6      := os.Getenv("IPV6")
   refresh   := os.Getenv("REFRESH")
+  email     := os.Getenv("EMAIL")
   c.HTML(
     http.StatusOK,
     "index.html",
@@ -37,6 +38,7 @@ func showIndexPage(c *gin.Context) {
       "title":     "Last Heard",
       "version":   dver,
       "info":      info,
+      "email":     email,
       "modules":   modules,
       "stations":  stations,
       "ipv4":      ipv4,
@@ -52,6 +54,7 @@ func showLinksPage(c *gin.Context) {
   nodes := r.GetNodes()
   ipv4  := os.Getenv("IPV4")
   ipv6  := os.Getenv("IPV6")
+  email := os.Getenv("EMAIL")
   c.HTML(
     http.StatusOK,
     "links.html",
@@ -59,6 +62,7 @@ func showLinksPage(c *gin.Context) {
       "title":     "Links",
       "version":   dver,
       "info":      info,
+      "email":     email,
       "nodes":     nodes,
       "ipv4":      ipv4,
       "ipv6":      ipv6,
@@ -72,6 +76,7 @@ func showPeersPage(c *gin.Context) {
   peers := r.GetPeers()
   ipv4  := os.Getenv("IPV4")
   ipv6  := os.Getenv("IPV6")
+  email := os.Getenv("EMAIL")
   c.HTML(
     http.StatusOK,
     "peers.html",
@@ -79,6 +84,7 @@ func showPeersPage(c *gin.Context) {
       "title":     "Peers",
       "version":   dver,
       "info":      info,
+      "email":     email,
       "peers":     peers,
       "ipv4":      ipv4,
       "ipv6":      ipv6,
