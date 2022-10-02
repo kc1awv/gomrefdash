@@ -111,8 +111,8 @@ Install Go 1.19+ according to your platform, directions can be found [here](http
 ## Roadmap
 
 - [x] Beta Release
-- [ ] Refresh page on log file changes, instead of a meta refresh in browser
-- [ ] Create two-column layout for Modules In Use, instead of a single column
+- [x] Refresh page on log file changes, instead of a meta refresh in browser - thanks AC8ZD
+- [x] Create two-column layout for Modules In Use, instead of a single column
 - [ ] Add country flags for callsigns
 
 See the [open issues](https://github.com/kc1awv/gomrefdash/issues) for a full list of proposed features (and known issues).
