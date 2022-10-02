@@ -8,6 +8,8 @@ import (
 	"github.com/joho/godotenv"
 )
 
+var dver = "0.0.2"
+
 var router *gin.Engine
 
 var reflector *Reflector // don't really like global variables, but don't see a way around this atm.
