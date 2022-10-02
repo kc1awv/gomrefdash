@@ -42,6 +42,7 @@ func main() {
   router.GET("/links/", showLinksPage)
   router.GET("/peers/", showPeersPage)
   router.GET("/status", showStatus) //dashboard status metadata
+  router.GET("/reflectordata", showReflectorJSON)
   
   log.Fatal(router.Run())
 

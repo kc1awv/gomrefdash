@@ -21,6 +21,13 @@ func showStatus(c *gin.Context) {
   c.JSON(200, status)
 }
 
+// showReflectorJSON returns the entire reflector stuct in JSON.
+func showReflectorJSON(c *gin.Context) {
+  reflector.Lock.Lock()
+  defer reflector.Lock.Unlock()
+  c.JSON(200, reflector)
+} 
+
 func showIndexPage(c *gin.Context) {
   r := reflector
 
