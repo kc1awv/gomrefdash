@@ -178,7 +178,7 @@ Project Link: [https://github.com/kc1awv/gomrefdash](https://github.com/kc1awv/g
 [issues-url]: https://github.com/kc1awv/gomrefdash/issues
 [license-shield]: https://img.shields.io/github/license/kc1awv/gomrefdash.svg?style=for-the-badge
 [license-url]: https://github.com/kc1awv/gomrefdash/blob/master/LICENSE.txt
-[build-sheild]: https://img.shields.io/github/workflow/status/kc1awv/gomrefdash/Audit?style=for-the-badge
+[build-shield]: https://img.shields.io/github/workflow/status/kc1awv/gomrefdash/Audit?style=for-the-badge
 [build-url]: https://github.com/kc1awv/gomrefdash/actions/workflows/audit.yml
 [product-screenshot]: static/screenshot.png
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
