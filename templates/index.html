@@ -35,23 +35,27 @@
               <thead>
                 <th class="text-center">Modules in Use</th>
               </thead>
-              {{ range $k, $v := .modules}}
-              <table class="table">
-                <thead>
-                  <th>
-                    {{ $k }}
-                  </th>
-                </thead>
-                <tbody>
-                  {{ range $v }}
-                  <tr>
-                    <td>{{ . }}</td>
-                  </tr>
-                {{ end }}
-                </tbody>
-              </table>
-              {{ end }}
             </table>
+            <div class="row">
+            {{ range $k, $v := .modules}}
+              <div class="col-sm-6">
+                <table class="table table-sm">
+                  <thead>
+                    <th>
+                      {{ $k }}
+                    </th>
+                  </thead>
+                  <tbody>
+                    {{ range $v }}
+                    <tr>
+                      <td>{{ . }}</td>
+                    </tr>
+                  {{ end }}
+                  </tbody>
+                </table>
+              </div>
+            {{ end }}
+            </div>
           </div>
         </div>
       </div>
