@@ -12,18 +12,18 @@
                   <td><strong>Last Heard Time</strong></td>
                 </tr>
               </thead>
-              <tbody>
-                {{ range $k, $v := .peers }}
-                <tr>
-                  <th scope="row">{{ $k }}</th>
-                  {{ range $v }}
-                  <td>{{ . }}</td>
-                  {{ end }}
+              <tbody id="peers">
+                <tr v-for="(peer, index) in peersdata">
+                  <th scope="row">${ peer.callsign }</th>
+                  <td>${ peer.ip }</td>
+                  <td>${ peer.linkedmodule }</td>
+                  <td>${ peer.connecttime }</td>
+                  <td>${ peer.lastheardtime }</td> 
                 </tr>
-                {{ end }}
               </tbody>
             </table>
           </div>
         </div>
     </main>
+    <script type="module" src="/static/peers.js"></script>
 {{ template "footer.html" .}}

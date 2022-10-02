@@ -8,7 +8,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var dver = "0.0.2"
+var dver = "0.0.3"
 
 var router *gin.Engine
 
@@ -40,11 +40,16 @@ func main() {
   router = gin.Default()
   router.LoadHTMLGlob("templates/*")
   router.StaticFile("/favicon.ico", "static/favicon.ico")
+  router.Static("/static", "static")
   router.GET("/", showIndexPage)
   router.GET("/links/", showLinksPage)
   router.GET("/peers/", showPeersPage)
   router.GET("/status", showStatus) //dashboard status metadata
-  router.GET("/reflectordata", showReflectorJSON)
+  router.GET("/json/reflector", showReflectorJSON)
+  router.GET("/json/stations", showStationDataJSON)
+  router.GET("/json/links", showLinksDataJSON)
+  router.GET("/json/modulesinuse", showModulesInUseJSON)
+  router.GET("/json/peers",showPeers)
   
   log.Fatal(router.Run())
 
