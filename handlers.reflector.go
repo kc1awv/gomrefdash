@@ -1,15 +1,32 @@
 package main
 
 import (
-  "net/http"
-  "os"
-  "github.com/gin-gonic/gin"
+	"net/http"
+	"os"
+
+	"github.com/gin-gonic/gin"
 )
 
+func showStatus(c *gin.Context) { 
+  r := reflector
+  r.refreshIfNeeded()
+  status := struct{
+    LastUpdateUnixTime int64 `json:"lastupdate"`
+    LastDataUpdateUnixTime int64 `json:"lastmrefdupdate"`
+  }{
+    LastUpdateUnixTime: r.LastUpdateCheckTime.Unix(),
+    LastDataUpdateUnixTime: r.ReflectorData.FileTime.Unix(),
+  }
+
+  c.JSON(200, status)
+}
+
 func showIndexPage(c *gin.Context) {
-  info      := getInfo()
-  modules   := getModules()
-  stations  := getStations()
+  r := reflector
+
+  info      := r.GetInfo()
+  modules   := r.GetModules()
+  stations  := r.GetStations()
   ipv4      := os.Getenv("IPV4")
   ipv6      := os.Getenv("IPV6")
   refresh   := os.Getenv("REFRESH")
@@ -29,8 +46,9 @@ func showIndexPage(c *gin.Context) {
 }
 
 func showLinksPage(c *gin.Context) {
-  info  := getInfo()
-  nodes := getNodes()
+  r := reflector
+  info  := r.GetInfo()
+  nodes := r.GetNodes()
   ipv4  := os.Getenv("IPV4")
   ipv6  := os.Getenv("IPV6")
   c.HTML(
@@ -47,8 +65,9 @@ func showLinksPage(c *gin.Context) {
 }
 
 func showPeersPage(c *gin.Context) {
-  info  := getInfo()
-  peers := getPeers()
+  r := reflector
+  info  := r.GetInfo()
+  peers := r.GetPeers()
   ipv4  := os.Getenv("IPV4")
   ipv6  := os.Getenv("IPV6")
   c.HTML(
