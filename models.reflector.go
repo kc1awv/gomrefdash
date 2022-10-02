@@ -10,6 +10,7 @@ import (
 	"time"
 )
 
+// Reflector struct
 type Reflector struct {
   Lock sync.Mutex // used during cache refreshes or when requested by client
   LastUpdateCheckTime time.Time // the last time update was checked
@@ -17,6 +18,7 @@ type Reflector struct {
   ReflectorFilePath string // contains the FilePath of reflector file. mrefd.xml
 }
 
+// ReflectorData struct
 type ReflectorData struct {
   FileTime time.Time // populated after data is loaded (this isn't in the xml file)
   Callsign string    `xml:"CALLSIGN,attr"`
@@ -45,6 +47,7 @@ type ReflectorData struct {
   } `xml:"STATIONS>STATION"`
 }
 
+// NewReflectorDataFromFile initializes reflector data
 func NewReflectorDataFromFile(filePath string) (*ReflectorData, error) { 
   stat, err := os.Stat(filePath)
   if err != nil {
@@ -98,6 +101,7 @@ func (r *Reflector) refreshIfNeeded() {
 
 }
 
+// GetInfo returns the reflector callsign and version data
 func (r *Reflector) GetInfo() map[string][]string {
   //r.refreshIfNeeded()
   r.Lock.Lock()
@@ -108,6 +112,8 @@ func (r *Reflector) GetInfo() map[string][]string {
   return info
 }
 
+// GetModules returns reflector modules in use and the stations
+// associated with them
 func (r *Reflector) GetModules() map[string][]string {
   //r.refreshIfNeeded()
   r.Lock.Lock()
@@ -121,6 +127,8 @@ func (r *Reflector) GetModules() map[string][]string {
   return modules
 }
 
+// GetNodes returns the nodes (gateways / hotspots) connected
+// to the reflector
 func (r *Reflector) GetNodes() map[string][]string {
   //r.refreshIfNeeded()
   r.Lock.Lock()
@@ -133,6 +141,8 @@ func (r *Reflector) GetNodes() map[string][]string {
   return nodes
 }
 
+// GetPeers returns the peers (linked reflectors) connected to
+// the reflector and the modules they are connected to
 func (r *Reflector) GetPeers() map[string][]string {
   //r.refreshIfNeeded()
   r.Lock.Lock()
@@ -145,6 +155,8 @@ func (r *Reflector) GetPeers() map[string][]string {
   return peers
 }
 
+// GetStations returns the staitons connected to the reflector
+// and their last heard information
 func (r *Reflector) GetStations() map[int][]string {
   //r.refreshIfNeeded()
   r.Lock.Lock()
