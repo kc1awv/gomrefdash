@@ -42,6 +42,7 @@ func showIndexPage(c *gin.Context) {
     "index.html",
     gin.H{
       "title":     "Last Heard",
+      "version":   dver,
       "info":      info,
       "modules":   modules,
       "stations":  stations,
@@ -62,11 +63,12 @@ func showLinksPage(c *gin.Context) {
     http.StatusOK,
     "links.html",
     gin.H{
-      "title": "Links",
-      "info":  info,
-      "nodes": nodes,
-      "ipv4":  ipv4,
-      "ipv6":  ipv6,
+      "title":     "Links",
+      "version":   dver,
+      "info":      info,
+      "nodes":     nodes,
+      "ipv4":      ipv4,
+      "ipv6":      ipv6,
     },
   )
 }
@@ -81,11 +83,12 @@ func showPeersPage(c *gin.Context) {
     http.StatusOK,
     "peers.html",
     gin.H{
-      "title": "Peers",
-      "info":  info,
-      "peers": peers,
-      "ipv4":  ipv4,
-      "ipv6":  ipv6,
+      "title":     "Peers",
+      "version":   dver,
+      "info":      info,
+      "peers":     peers,
+      "ipv4":      ipv4,
+      "ipv6":      ipv6,
     },
   )
 }
