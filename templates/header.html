@@ -4,28 +4,6 @@
   src="https://code.jquery.com/jquery-3.6.1.min.js"
   integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
   crossorigin="anonymous"></script>
-  <script>
-    var previous = null;
-    var current = null;
-    setInterval(function() {
-      // going to refresh once a minute if not triggered by status change
-      // this resets every time page is loaded.
-      location.reload();
-    }, 60000);
-    setInterval(function() {
-        $.getJSON("/status", function(json) {
-            current = json.lastmrefdupdate;            
-            if (previous != null && previous !== current) {
-                console.log('refresh');
-                setTimeout(function() {
-                  //delay is here to handle a race condition
-                  location.reload();
-                }, 5000);
-            }
-            previous = current;
-        });                       
-    }, {{ .refresh }} * 1000);   
-</script>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -12,39 +12,39 @@ import (
 
 // Reflector struct
 type Reflector struct {
-  Lock sync.Mutex // used during cache refreshes or when requested by client
-  LastUpdateCheckTime time.Time // the last time update was checked
-  ReflectorData ReflectorData
-  ReflectorFilePath string // contains the FilePath of reflector file. mrefd.xml
+  Lock sync.Mutex `json:"-"` // used during cache refreshes or when requested by client
+  LastUpdateCheckTime time.Time `json:"lastupdatechecktime"` // the last time update was checked
+  ReflectorData ReflectorData `json:"data"`
+  ReflectorFilePath string `json:"-"` // contains the FilePath of reflector file. mrefd.xml
 }
 
-// ReflectorData struct
 type ReflectorData struct {
-  FileTime time.Time // populated after data is loaded (this isn't in the xml file)
-  Callsign string    `xml:"CALLSIGN,attr"`
-  Version  string    `xml:"VERSION"`
+  FileTime time.Time `json:"filetime"` // populated after data is loaded (this isn't in the xml file)
+  Callsign string    `xml:"CALLSIGN,attr" json:"callsign"`
+  Version  string    `xml:"VERSION" json:"version"`
+
   Peers    []struct {
-    Callsign      string   `xml:"CALLSIGN"`
-    IPAddress     string   `xml:"IP"`
-    LinkedModule  string   `xml:"LINKEDMODULE"`
-    ConnectTime   string   `xml:"CONNECTTIME"`
-    LastHeardTime string   `xml:"LASTHEARDTIME"`
-  } `xml:"PEERS>PEER"`
+    Callsign      string   `xml:"CALLSIGN" json:"callsign"` 
+    IPAddress     string   `xml:"IP" json:"ip"`
+    LinkedModule  string   `xml:"LINKEDMODULE" json:"linkedmodule"`
+    ConnectTime   string   `xml:"CONNECTTIME" json:"connecttime"`
+    LastHeardTime string   `xml:"LASTHEARDTIME" json:"lastheardtime"`
+  } `xml:"PEERS>PEER" json:"peers"`
   Nodes    []struct {
-    Callsign      string   `xml:"CALLSIGN"`
-    IPAddress     string   `xml:"IP"`
-    LinkedModule  string   `xml:"LINKEDMODULE"`
-    Protocol      string   `xml:"PROTOCOL"`
-    ConnectTime   string   `xml:"CONNECTTIME"`
-    LastHeardTime string   `xml:"LASTHEARDTIME"`
-  } `xml:"NODES>NODE"`
+    Callsign      string   `xml:"CALLSIGN" json:"callsign"`
+    IPAddress     string   `xml:"IP" json:"ip"`
+    LinkedModule  string   `xml:"LINKEDMODULE" json:"linkedmodule"`
+    Protocol      string   `xml:"PROTOCOL" json:"protocol"`
+    ConnectTime   string   `xml:"CONNECTTIME" json:"connecttime"`
+    LastHeardTime string   `xml:"LASTHEARDTIME" json:"lastheardtime"`
+  } `xml:"NODES>NODE" json:"nodes"`
   Stations []struct {
-    Callsign      string   `xml:"CALLSIGN"`
-    ViaNode       string   `xml:"VIANODE"`
-    OnModule      string   `xml:"ONMODULE"`
-    ViaPeer       string   `xml:"VIAPEER"`
-    LastHeardTime string   `xml:"LASTHEARDTIME"`
-  } `xml:"STATIONS>STATION"`
+    Callsign      string   `xml:"CALLSIGN" json:"callsign"`
+    ViaNode       string   `xml:"VIANODE" json:"vianode"`
+    OnModule      string   `xml:"ONMODULE" json:"onmodule"`
+    ViaPeer       string   `xml:"VIAPEER" json:"viapeer"`
+    LastHeardTime string   `xml:"LASTHEARDTIME" json:"lastheardtime"`
+  } `xml:"STATIONS>STATION" json:"stations"`
 }
 
 // NewReflectorDataFromFile initializes reflector data

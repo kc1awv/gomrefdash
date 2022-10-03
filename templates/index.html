@@ -3,7 +3,7 @@
       <div class="container">
         <div class="row justify-content-md-center">
           <div class="col-sm-8">
-            <table class="table table-sm table-striped table-numbered">
+            <table id="stations" class="table table-sm table-striped table-numbered">
               <thead>
                 <tr>
                   <td><strong>#</strong></td>
@@ -15,49 +15,42 @@
                 </tr>
               </thead>
               <tbody>
-                {{ range $k, $v := .stations }}
-                  {{ if lt $k 20 }}
-                    <tr>
-                      <th scope="row"></th>
-                      <td><a href="https://www.qrz.com/db/{{ index $v 0 }}" target="_blank">{{ index $v 0 }}</td>
-                      <td>{{ index $v 1 }}</td>
-                      <td>{{ index $v 2 }}</td>
-                      <td>{{ index $v 3 }}</td>
-                      <td>{{ index $v 5 }}</td>
-                    </tr>
-                  {{ end }}
-                {{ end }}
+                <tr v-for="(station, index) in stationdata.stations">
+                  <th scope="row"></th>
+                  <td><a :href="`https://www.qrz.com/db/${ station.callsign }`" target="_blank">${ station.callsign }</td>
+                  <td>${ station.callsignsuffix }</td>
+                  <td>${ station.linkpeer }</td>
+                  <td>${ station.onmodule }</td>
+                  <td>${ station.lastheard }</td>
+                </tr>
               </tbody>
             </table>
           </div>
-          <div class="col-sm-4">
+          <div id="modules" class="col-sm-4">
             <table class="table">
               <thead>
                 <th class="text-center">Modules in Use</th>
               </thead>
             </table>
             <div class="row">
-            {{ range $k, $v := .modules}}
-              <div class="col-sm-6">
+              <div v-for="(module, index1) in moduledata" class="col-sm-6">
                 <table class="table table-sm">
                   <thead>
                     <th>
-                      {{ $k }}
+                      ${ module.name }
                     </th>
                   </thead>
                   <tbody>
-                    {{ range $v }}
-                    <tr>
-                      <td>{{ . }}</td>
+                    <tr v-for="(callsign, index2) in module.callsigns">
+                      <td>${ callsign }</td>
                     </tr>
-                  {{ end }}
                   </tbody>
                 </table>
               </div>
-            {{ end }}
             </div>
           </div>
         </div>
       </div>
     </main>
+    <script type="module" src="/static/index.js"></script>
 {{ template "footer.html" .}}

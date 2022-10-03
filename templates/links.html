@@ -13,18 +13,19 @@
                   <td><strong>Last Heard Time</strong></td>
                 </tr>
               </thead>
-              <tbody>
-                {{ range $k, $v := .nodes }}
-                <tr>
-                  <th scope="row">{{ $k }}</th>
-                  {{ range $v }}
-                  <td>{{ . }}</td>
-                  {{ end }}
+              <tbody id="links">
+                <tr v-for="(node, index) in linksdata">
+                  <th scope="row">${ node.callsign }</th>
+                  <td>${ node.ip }</td>
+                  <td>${ node.linkedmodule }</td>
+                  <td>${ node.protocol }</td>
+                  <td>${ node.connecttime }</td>
+                  <td>${ node.lastheardtime }</td>
                 </tr>
-                {{ end }}
               </tbody>
             </table>
           </div>
         </div>
     </main>
+    <script type="module" src="/static/links.js"></script>
 {{ template "footer.html" .}}
