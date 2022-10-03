@@ -36,7 +36,7 @@ func showStationDataJSON(c *gin.Context) {
   type stationData struct {
     Callsign string `json:"callsign"`
     CallsignSuffix string `json:"callsignsuffix"`
-    LinkPeer string `json:"linkpeer"` 
+    ViaNode string `json:"vianode"`
     OnModule string `json:"onmodule"`
     LastHeard string `json:"lastheard"`
   }
@@ -51,7 +51,7 @@ func showStationDataJSON(c *gin.Context) {
     data.Stations = append(data.Stations, stationData{
       Callsign: callsignSplit[0],
       CallsignSuffix: callsignSplit[1],
-      LinkPeer: station.ViaPeer,
+      ViaNode: station.ViaNode,
       OnModule: station.OnModule,
       LastHeard: station.LastHeardTime,
     })
