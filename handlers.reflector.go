@@ -30,6 +30,7 @@ func showReflectorJSON(c *gin.Context) {
 }
 
 func showStationDataJSON(c *gin.Context) {
+  reflector.refreshIfNeeded()
   reflector.Lock.Lock()
   defer reflector.Lock.Unlock()
   type stationData struct {
@@ -59,12 +60,14 @@ func showStationDataJSON(c *gin.Context) {
 }
 
 func showPeers(c *gin.Context) {
+  reflector.refreshIfNeeded()
   reflector.Lock.Lock()
   defer reflector.Lock.Unlock()
   c.JSON(200, reflector.ReflectorData.Peers)
 }
 
 func showLinksDataJSON(c *gin.Context) {
+  reflector.refreshIfNeeded()
   c.JSON(200, reflector.ReflectorData.Nodes)
 }
 
@@ -109,7 +112,6 @@ func showIndexPage(c *gin.Context) {
 func showLinksPage(c *gin.Context) {
   r := reflector
   info  := r.GetInfo()
-  nodes := r.GetNodes()
   ipv4  := os.Getenv("IPV4")
   ipv6  := os.Getenv("IPV6")
   email := os.Getenv("EMAIL")
@@ -121,7 +123,6 @@ func showLinksPage(c *gin.Context) {
       "version":   dver,
       "info":      info,
       "email":     email,
-      "nodes":     nodes,
       "ipv4":      ipv4,
       "ipv6":      ipv6,
     },
@@ -131,7 +132,6 @@ func showLinksPage(c *gin.Context) {
 func showPeersPage(c *gin.Context) {
   r := reflector
   info  := r.GetInfo()
-  peers := r.GetPeers()
   ipv4  := os.Getenv("IPV4")
   ipv6  := os.Getenv("IPV6")
   email := os.Getenv("EMAIL")
@@ -143,7 +143,6 @@ func showPeersPage(c *gin.Context) {
       "version":   dver,
       "info":      info,
       "email":     email,
-      "peers":     peers,
       "ipv4":      ipv4,
       "ipv6":      ipv6,
     },
