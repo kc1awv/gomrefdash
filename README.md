@@ -95,7 +95,7 @@ Install Go 1.19+ according to your platform, directions can be found [here](http
    ```
 2. Build the application
    ```sh
-   go build -o gomrefdash
+   make
    ```
 3. Copy .env.sample and edit to your environment
     ```sh
@@ -109,6 +109,42 @@ Install Go 1.19+ according to your platform, directions can be found [here](http
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Advanced (Experimental)
+
+These are some things that aren't officially supported, but you can try it out.
+### Docker
+
+#### Some Assumptions
+
+1. mrefd is already running on the system running docker.
+
+2. You are familiar with docker and it's installed on your system - https://www.docker.com
+
+3. You have docker-compose installed - https://docs.docker.com/compose/install/
+
+#### Quickstart
+
+1. Edit the docker-compose.yml for your environment
+
+2. Run ```docker-compose up```
+
+3. Open http://localhost:3000
+
+You will need to put a proxy in front of your application, or modify the docker-compose file to add nginx or caddy.  That is left as an exercise for the admin as the choices are various.  Many of us prefer caddy as it has automatic ssl via letsencrypt.
+
+### Makefile
+
+The makefile has various convience functions:
+
+* ```make``` (no parameters), builds the binary for your system
+
+* ```make run``` runs the application (without building a binary)
+
+* ```make docker``` builds a docker image with the application
+
+* ```make clean``` cleans old builds
+
+* ```make package``` builds and packages everything up into a tarball for your system
 
 ## Roadmap
 

@@ -1,0 +1,15 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  gomrefdash:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      #- /var/log/mrefd.xml:/var/log/mrefd.xml
+      - ./mrefd.xml:/var/log/mrefd.xml
+    environment:
+      - IPV4=127.0.0.1          # Reflector IPv4 address
+      - IPV6=NONE  # Reflector IPv6 address (if none, use NONE)
+      - REFRESH=20            # Page refresh in seconds
+      - LASTHEARD=20          # Number of stations to display in Last Heard
+      - EMAIL=sysop@m17reflector.xyz # email address to contact about the reflector

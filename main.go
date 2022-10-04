@@ -8,7 +8,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var dver = "0.0.3"
+var dver = "development"
 
 var router *gin.Engine
 
@@ -31,6 +31,7 @@ func initReflector() {
 }
 
 func main() {
+  log.Printf("Starting version %s of %s", dver, os.Args[0])
   err := godotenv.Load()
   if err != nil {
     log.Fatalf("error loading .env file: %s", err)
