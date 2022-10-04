@@ -18,6 +18,7 @@ type Reflector struct {
   ReflectorFilePath string `json:"-"` // contains the FilePath of reflector file. mrefd.xml
 }
 
+//RelectorData contains data scraped from the mrefd.xml file of mrefd.
 type ReflectorData struct {
   FileTime time.Time `json:"filetime"` // populated after data is loaded (this isn't in the xml file)
   Callsign string    `xml:"CALLSIGN,attr" json:"callsign"`
