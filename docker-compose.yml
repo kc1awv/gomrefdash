@@ -5,8 +5,8 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      #- /var/log/mrefd.xml:/var/log/mrefd.xml
-      - ./mrefd.xml:/var/log/mrefd.xml
+      - /var/log/mrefd.xml:/var/log/mrefd.xml
+      #- ./mrefd.xml:/var/log/mrefd.xml
     environment:
       - IPV4=127.0.0.1          # Reflector IPv4 address
       - IPV6=NONE  # Reflector IPv6 address (if none, use NONE)
