@@ -134,6 +134,10 @@ These are some things that aren't officially supported, but you can try it out.
 
 You will need to put a proxy in front of your application, or modify the docker-compose file to add nginx or caddy.  That is left as an exercise for the admin as the choices are various.  Many of us prefer caddy as it has automatic ssl via letsencrypt.
 
+To upgrade, ```git pull && docker-compose down && docker-compose build && docker-compose up -d```
+
+Check with ```docker-compose logs -f``` (hit ctrl-c to stop log streaming)
+
 ### Makefile
 
 The makefile has various convience functions:
