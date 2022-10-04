@@ -124,11 +124,13 @@ These are some things that aren't officially supported, but you can try it out.
 
 #### Quickstart
 
-1. Edit the docker-compose.yml for your environment
+1. Copy docker-compose.sample.yml to docker-compose.yml
 
-2. Run ```docker-compose up```
+2. Edit the docker-compose.yml for your environment
 
-3. Open http://localhost:3000
+3. Run ```docker-compose up```
+
+4. Open http://localhost:3000
 
 You will need to put a proxy in front of your application, or modify the docker-compose file to add nginx or caddy.  That is left as an exercise for the admin as the choices are various.  Many of us prefer caddy as it has automatic ssl via letsencrypt.
 
