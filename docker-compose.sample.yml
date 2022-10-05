@@ -14,3 +14,4 @@ services:
       - GOMREFDASH_REFRESH=20            # Page refresh in seconds
       - GOMREFDASH_LASTHEARD=20          # Number of stations to display in Last Heard
       - GOMREFDASH_EMAIL=sysop@m17reflector.xyz # email address to contact about the reflector
+      - GOMREFDASH_MREFFILE=/var/log/mrefd.xml # where the mrefd.xml is mounted
