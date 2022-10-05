@@ -42,7 +42,7 @@ func (d *Dashboard) showStationDataJSON(c *gin.Context) {
 	var data struct {
 		Stations []stationData `json:"stations"`
 	}
-	for _, station := range d.Reflector.ReflectorData.Stations {
+	for i, station := range d.Reflector.ReflectorData.Stations {
 		callsignSplit := strings.Split(station.Callsign, " ")
 		if len(callsignSplit) < 2 {
 			continue
@@ -54,6 +54,9 @@ func (d *Dashboard) showStationDataJSON(c *gin.Context) {
 			OnModule:       station.OnModule,
 			LastHeard:      station.LastHeardTime,
 		})
+		if i >= d.Config.LastHeard-1 {
+			break
+		} // respect the last heard
 	}
 	c.JSON(200, data)
 }
