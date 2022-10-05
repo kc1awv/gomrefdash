@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 	"strings"
-	
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -88,9 +88,6 @@ func (d *Dashboard) showModulesInUseJSON(c *gin.Context) {
 func (d *Dashboard) showIndexPage(c *gin.Context) {
 	r := d.Reflector
 	info := r.GetInfo()
-	ipv4 := d.Config.IPv4
-	ipv6 := d.Config.IPv6
-	email := d.Config.Email
 	c.HTML(
 		http.StatusOK,
 		"index.html",
@@ -98,9 +95,7 @@ func (d *Dashboard) showIndexPage(c *gin.Context) {
 			"title":   "Last Heard",
 			"version": dver,
 			"info":    info,
-			"email":   email,
-			"ipv4":    ipv4,
-			"ipv6":    ipv6,
+			"config":  d.Config,
 		},
 	)
 }
@@ -108,9 +103,6 @@ func (d *Dashboard) showIndexPage(c *gin.Context) {
 func (d *Dashboard) showLinksPage(c *gin.Context) {
 	r := d.Reflector
 	info := r.GetInfo()
-	ipv4 := d.Config.IPv4
-	ipv6 := d.Config.IPv6
-	email := d.Config.Email
 	c.HTML(
 		http.StatusOK,
 		"links.html",
@@ -118,9 +110,7 @@ func (d *Dashboard) showLinksPage(c *gin.Context) {
 			"title":   "Links",
 			"version": dver,
 			"info":    info,
-			"email":   email,
-			"ipv4":    ipv4,
-			"ipv6":    ipv6,
+			"config":  d.Config,
 		},
 	)
 }
@@ -128,9 +118,6 @@ func (d *Dashboard) showLinksPage(c *gin.Context) {
 func (d *Dashboard) showPeersPage(c *gin.Context) {
 	r := d.Reflector
 	info := r.GetInfo()
-	ipv4 := d.Config.IPv4
-	ipv6 := d.Config.IPv6
-	email := d.Config.Email
 	c.HTML(
 		http.StatusOK,
 		"peers.html",
@@ -138,9 +125,7 @@ func (d *Dashboard) showPeersPage(c *gin.Context) {
 			"title":   "Peers",
 			"version": dver,
 			"info":    info,
-			"email":   email,
-			"ipv4":    ipv4,
-			"ipv6":    ipv6,
+			"config":  d.Config,
 		},
 	)
 }

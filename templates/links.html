@@ -27,5 +27,32 @@
           </div>
         </div>
     </main>
-    <script type="module" src="/static/links.js"></script>
+    <script type="module">
+      import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
+
+const refreshTime = {{ .config.Refresh }} * 1000;
+
+// links stuff
+createApp({
+    delimiters: ['${', '}'],
+    data() {
+        return {
+            linksdata: [],
+            timer: ''
+        }
+    },
+    methods: {
+        fetchLinksList () {
+            $.getJSON('{{ .config.SubPath }}/json/links', (linksdata) => {
+                this.linksdata = linksdata
+            });
+        },
+    },
+    mounted() {
+        this.timer = setInterval(this.fetchLinksList, refreshTime)
+        this.fetchLinksList()
+    },
+}).mount('#links')
+
+    </script>
 {{ template "footer.html" .}}

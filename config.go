@@ -18,6 +18,7 @@ type Config struct {
 	MrefFile  string `toml:"mreffile"`
 	Email     string `toml:"email"`
 	Debug     bool   `toml:"debug"`
+	SubPath   string `toml:"subpath"`
 }
 
 func checkEnvOrErrString(k string) (string, error) {
@@ -75,6 +76,11 @@ func NewConfigFromEnv() (*Config, error) {
 	config.Refresh, err = checkEnvOrErrInt(prefix + "_REFRESH")
 	if err != nil {
 		return nil, err
+	}
+
+	config.Refresh, err = checkEnvOrErrInt(prefix + "_SUBPATH")
+	if err != nil {
+		log.Println("warning: No SUBPATH defined, this is ok default to /")
 	}
 
 	return &config, nil

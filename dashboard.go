@@ -26,17 +26,20 @@ func NewDashboard(config *Config) (*Dashboard, error) {
 	}
 	router := gin.Default()
 	router.LoadHTMLGlob("templates/*")
-	router.StaticFile("/favicon.ico", "static/favicon.ico")
-	router.Static("/static", "static")
-	router.GET("/", d.showIndexPage)
-	router.GET("/links/", d.showLinksPage)
-	router.GET("/peers/", d.showPeersPage)
-	router.GET("/status", d.showStatus) //dashboard status metadata
-	router.GET("/json/reflector", d.showReflectorJSON)
-	router.GET("/json/stations", d.showStationDataJSON)
-	router.GET("/json/links", d.showLinksDataJSON)
-	router.GET("/json/modulesinuse", d.showModulesInUseJSON)
-	router.GET("/json/peers", d.showPeers)
+	subPath := router.Group(config.SubPath)
+	{
+		subPath.StaticFile("/favicon.ico", "static/favicon.ico")
+		subPath.Static("/static", "static")
+		subPath.GET("/", d.showIndexPage)
+		subPath.GET("/links", d.showLinksPage)
+		subPath.GET("/peers", d.showPeersPage)
+		subPath.GET("/status", d.showStatus) //dashboard status metadata
+		subPath.GET("/json/reflector", d.showReflectorJSON)
+		subPath.GET("/json/stations", d.showStationDataJSON)
+		subPath.GET("/json/links", d.showLinksDataJSON)
+		subPath.GET("/json/modulesinuse", d.showModulesInUseJSON)
+		subPath.GET("/json/peers", d.showPeers)
+	}
 	d.Router = router
 
 	return &d, nil
