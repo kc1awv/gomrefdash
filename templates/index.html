@@ -52,5 +52,53 @@
         </div>
       </div>
     </main>
-    <script type="module" src="/static/index.js"></script>
+    <script type="module">
+    import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
+
+const refreshTime = {{ .config.Refresh }} * 1000;
+
+// station stuff
+createApp({
+    delimiters: ['${', '}'],
+    data() {
+        return {
+            stationdata: {},
+            timer: ''
+        }
+    },
+    methods: {
+        fetchStationsList () {
+            $.getJSON('{{ .config.SubPath }}/json/stations', (stationdata) => {
+                this.stationdata = stationdata
+            });
+        },
+    },
+    mounted() {
+        this.timer = setInterval(this.fetchStationsList, refreshTime)
+        this.fetchStationsList()
+    },
+}).mount('#stations')
+
+// modules stuff
+createApp({
+    delimiters: ['${', '}'],
+    data() {
+        return {
+            moduledata: {},
+            timer: ''
+        }
+    },
+    methods: {
+        fetchModulesList () {
+            $.getJSON('{{ .config.SubPath }}/json/modulesinuse', (moduledata) => {
+                this.moduledata = moduledata
+            });
+        },
+    },
+    mounted() {
+        this.timer = setInterval(this.fetchModulesList, refreshTime)
+        this.fetchModulesList()
+    },
+}).mount('#modules')
+</script>
 {{ template "footer.html" .}}
