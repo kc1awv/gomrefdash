@@ -1,0 +1,8 @@
+hostport=":3000" # e.g. 127.0.0.1:3000 for only localhost
+ipv4="127.0.0.1"
+ipv6="01:02:03:04:05:06"
+refresh=10
+lastheard=20
+mreffile="/var/log/mrefd.xml"
+email="sysop@m17reflector.xyz"
+debug=false # debug mode on, logs more information
