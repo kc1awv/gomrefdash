@@ -78,7 +78,7 @@ func NewConfigFromEnv() (*Config, error) {
 		return nil, err
 	}
 
-	config.Refresh, err = checkEnvOrErrInt(prefix + "_SUBPATH")
+	config.SubPath, err = checkEnvOrErrString(prefix + "_SUBPATH")
 	if err != nil {
 		log.Println("warning: No SUBPATH defined, this is ok default to /")
 	}
