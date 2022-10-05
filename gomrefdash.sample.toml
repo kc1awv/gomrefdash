@@ -6,4 +6,4 @@ lastheard=20
 mreffile="/var/log/mrefd.xml"
 email="sysop@m17reflector.xyz"
 debug=false # debug mode on, logs more information
-subpath="/reflector" # e.g. "/reflector" would be http://yourhostname/reflector, leave blank for no sub path
+subpath="" # e.g. "/reflector" would be http://yourhostname/reflector, leave blank for no sub path
