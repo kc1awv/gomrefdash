@@ -12,3 +12,5 @@ mrefd.xml
 mrefd.old
 gomrefdash
 docker-compose.yml
+.vscode
+gomrefdash.toml

@@ -99,7 +99,7 @@ Install Go 1.19+ according to your platform, directions can be found [here](http
    ```
 3. Copy .env.sample and edit to your environment
     ```sh
-    cp .env.sample .env
+    cp gomrefdash.sample.toml to gomrefdash.toml
     ```
 
 4. Run gomrefdash

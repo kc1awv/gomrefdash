@@ -7,13 +7,12 @@ RUN make clean && make
 FROM alpine:latest
 ARG uid=1000
 ARG gid=1000
-RUN apk add bash file
+RUN apk add file
 RUN adduser -u ${uid} -g ${gid} -h /app -D gouser
 USER gouser
 WORKDIR /app
 COPY --from=builder /usr/src/app/gomrefdash .
 COPY --from=builder /usr/src/app/static/ static/
 COPY --from=builder /usr/src/app/templates/ templates/
-COPY entrypoint.sh .
 EXPOSE 3000
-ENTRYPOINT ./entrypoint.sh
+ENTRYPOINT ./gomrefdash
