@@ -88,12 +88,10 @@ func (d *Dashboard) showModulesInUseJSON(c *gin.Context) {
 
 func (d *Dashboard) showIndexPage(c *gin.Context) {
 	r := d.Reflector
-
 	info := r.GetInfo()
-	ipv4 := os.Getenv("IPV4")
-	ipv6 := os.Getenv("IPV6")
-	refresh := os.Getenv("REFRESH")
-	email := os.Getenv("EMAIL")
+	ipv4 := d.Config.IPv4
+	ipv6 := d.Config.IPv6
+	email := d.Config.Email
 	c.HTML(
 		http.StatusOK,
 		"index.html",
@@ -104,7 +102,6 @@ func (d *Dashboard) showIndexPage(c *gin.Context) {
 			"email":   email,
 			"ipv4":    ipv4,
 			"ipv6":    ipv6,
-			"refresh": refresh,
 		},
 	)
 }
@@ -112,9 +109,9 @@ func (d *Dashboard) showIndexPage(c *gin.Context) {
 func (d *Dashboard) showLinksPage(c *gin.Context) {
 	r := d.Reflector
 	info := r.GetInfo()
-	ipv4 := os.Getenv("IPV4")
-	ipv6 := os.Getenv("IPV6")
-	email := os.Getenv("EMAIL")
+	ipv4 := d.Config.IPv4
+	ipv6 := d.Config.IPv6
+	email := d.Config.Email
 	c.HTML(
 		http.StatusOK,
 		"links.html",
@@ -132,9 +129,9 @@ func (d *Dashboard) showLinksPage(c *gin.Context) {
 func (d *Dashboard) showPeersPage(c *gin.Context) {
 	r := d.Reflector
 	info := r.GetInfo()
-	ipv4 := os.Getenv("IPV4")
-	ipv6 := os.Getenv("IPV6")
-	email := os.Getenv("EMAIL")
+	ipv4 := d.Config.IPv4
+	ipv6 := d.Config.IPv6
+	email := d.Config.Email
 	c.HTML(
 		http.StatusOK,
 		"peers.html",
