@@ -43,9 +43,9 @@ func (d *Dashboard) showStationDataJSON(c *gin.Context) {
 		Stations []stationData `json:"stations"`
 	}
 	for i, station := range d.Reflector.ReflectorData.Stations {
-		callsignSplit := strings.Split(station.Callsign, " ")
+		callsignSplit := strings.Fields(station.Callsign)
 		if len(callsignSplit) < 2 {
-			continue
+			callsignSplit = append(callsignSplit, " ")
 		}
 		data.Stations = append(data.Stations, stationData{
 			Callsign:       callsignSplit[0],
