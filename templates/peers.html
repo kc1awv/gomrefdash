@@ -46,7 +46,7 @@ createApp({
             });
         },
     },
-    mounted() {
+    created() {
         this.timer = setInterval(this.fetchPeersList, refreshTime)
         this.fetchPeersList()
     },
