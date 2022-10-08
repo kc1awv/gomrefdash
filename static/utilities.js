@@ -1,7 +1,6 @@
 export { getDateString, getTimeString, localTimeString };
 
 function getDateString(dt) {
-    console.log(dt)
     const year = dt.getFullYear()
     const m = dt.getMonth() + 1
     var month = "" + m
@@ -26,11 +25,6 @@ function getDateString(dt) {
     if (m < 10) {
       min = "0" + m
     }
-    //const s = dt.getSeconds()
-    //var sec = "" + s
-    //if (s < 10) {
-    //  sec = "0" + s
-    //}
     return (hour+":"+min)
   } 
   function diffSeconds(dt2, dt1) {
