@@ -53,58 +53,58 @@
       </div>
     </main>
     <script type="module">
-    import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
-    import { localTimeString } from '{{ .config.SubPath }}/static/utilities.js'
+      import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
+      import { localTimeString } from '{{ .config.SubPath }}/static/utilities.js'
 
-const refreshTime = {{ .config.Refresh }} * 1000;
+      const refreshTime = {{ .config.Refresh }} * 1000;
 
-// station stuff
-createApp({
-    delimiters: ['${', '}'],
-    data() {
-        return {
-            stationdata: {},
-            timer: ''
-        }
-    },
-    methods: {
-      fetchStationsList () {
-        $.getJSON('{{ .config.SubPath }}/json/stations', (stationdata) => {
-          stationdata.stations.forEach(function(station, index) {
-            
-            station.lastheardlocal = localTimeString(station.lastheard)
-            stationdata.stations[index] = station     
-          });
-          this.stationdata = stationdata
-        });
-      },
-    },
-    mounted() {
-        this.timer = setInterval(this.fetchStationsList, refreshTime)
-        this.fetchStationsList()
-    },
-}).mount('#stations')
+      // station stuff
+      createApp({
+          delimiters: ['${', '}'],
+          data() {
+              return {
+                  stationdata: {},
+                  timer: ''
+              }
+          },
+          methods: {
+            fetchStationsList () {
+              $.getJSON('{{ .config.SubPath }}/json/stations', (stationdata) => {
+                stationdata.stations.forEach(function(station, index) {
+                  
+                  station.lastheardlocal = localTimeString(station.lastheard)
+                  stationdata.stations[index] = station     
+                });
+                this.stationdata = stationdata
+              });
+            },
+          },
+          mounted() {
+              this.timer = setInterval(this.fetchStationsList, refreshTime)
+              this.fetchStationsList()
+          },
+      }).mount('#stations')
 
-// modules stuff
-createApp({
-    delimiters: ['${', '}'],
-    data() {
-        return {
-            moduledata: {},
-            timer: ''
-        }
-    },
-    methods: {
-        fetchModulesList () {
-            $.getJSON('{{ .config.SubPath }}/json/modulesinuse', (moduledata) => {
-                this.moduledata = moduledata
-            });
-        },
-    },
-    mounted() {
-        this.timer = setInterval(this.fetchModulesList, refreshTime)
-        this.fetchModulesList()
-    },
-}).mount('#modules')
-</script>
+      // modules stuff
+      createApp({
+          delimiters: ['${', '}'],
+          data() {
+              return {
+                  moduledata: {},
+                  timer: ''
+              }
+          },
+          methods: {
+              fetchModulesList () {
+                  $.getJSON('{{ .config.SubPath }}/json/modulesinuse', (moduledata) => {
+                      this.moduledata = moduledata
+                  });
+              },
+          },
+          mounted() {
+              this.timer = setInterval(this.fetchModulesList, refreshTime)
+              this.fetchModulesList()
+          },
+      }).mount('#modules')
+    </script>
 {{ template "footer.html" .}}
