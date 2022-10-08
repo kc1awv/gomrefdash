@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"sort"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -79,11 +80,26 @@ func (d *Dashboard) showModulesInUseJSON(c *gin.Context) {
 		Callsigns []string `json:"callsigns"`
 	}
 
-	var moduleData []moduleInfo
-
 	modules := d.Reflector.GetModules()
-	for k, v := range modules {
-		moduleData = append(moduleData, moduleInfo{Name: k, Callsigns: v})
+	// Go Maps are not in any order.. binary trees.. make order from the chaos!
+
+	// make a list of keys.
+	keys := make([]string, 0, len(modules))
+	for k := range modules {
+		keys = append(keys, k)
+	}
+
+	// sort the keys
+	sort.Strings(keys)
+
+	// make moduleData by iterating the sorted keys
+	moduleData := make([]moduleInfo, 0, len(keys))
+	for _, name := range keys {
+		//sort the callsigns
+		callSigns := modules[name]
+		sort.Strings(callSigns)
+
+		moduleData = append(moduleData, moduleInfo{Name: name, Callsigns: callSigns})
 	}
 	c.JSON(200, moduleData)
 }
