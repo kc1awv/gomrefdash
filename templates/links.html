@@ -19,8 +19,8 @@
                   <td>${ node.ip }</td>
                   <td>${ node.linkedmodule }</td>
                   <td>${ node.protocol }</td>
-                  <td>${ node.connecttime }</td>
-                  <td>${ node.lastheardtime }</td>
+                  <td>${ node.connecttimelocal }</td>
+                  <td tooltip="${ node.lastheardtime }">${ node.lastheardtimelocal }</td>
                 </tr>
               </tbody>
             </table>
@@ -29,30 +29,36 @@
     </main>
     <script type="module">
       import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
+      import { localTimeString } from '{{ .config.SubPath }}/static/utilities.js'
 
-const refreshTime = {{ .config.Refresh }} * 1000;
+      const refreshTime = {{ .config.Refresh }} * 1000;
 
-// links stuff
-createApp({
-    delimiters: ['${', '}'],
-    data() {
-        return {
-            linksdata: [],
-            timer: ''
-        }
-    },
-    methods: {
-        fetchLinksList () {
+      // links stuff
+      createApp({
+        delimiters: ['${', '}'],
+        data() {
+          return {
+              linksdata: [],
+              timer: ''
+          }
+        },
+        methods: {
+          fetchLinksList () {
             $.getJSON('{{ .config.SubPath }}/json/links', (linksdata) => {
+                linksdata.forEach(function(link, index) {
+                  
+                  link.connecttimelocal = localTimeString(link.connecttime)
+                  link.lastheardtimelocal = localTimeString(link.lastheardtime)
+                  linksdata[index] = link     
+                });
                 this.linksdata = linksdata
             });
+          },
         },
-    },
-    created() {
-        this.timer = setInterval(this.fetchLinksList, refreshTime)
-        this.fetchLinksList()
-    },
-}).mount('#links')
-
+        created() {
+            this.timer = setInterval(this.fetchLinksList, refreshTime)
+            this.fetchLinksList()
+        },
+      }).mount('#links')
     </script>
 {{ template "footer.html" .}}
