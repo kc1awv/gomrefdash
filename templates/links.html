@@ -48,7 +48,7 @@ createApp({
             });
         },
     },
-    mounted() {
+    created() {
         this.timer = setInterval(this.fetchLinksList, refreshTime)
         this.fetchLinksList()
     },
