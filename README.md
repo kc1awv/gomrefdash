@@ -11,7 +11,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/kc1awv/gomrefdash">
-    <img src="static/m17_reflector.svg" alt="Logo">
+    <img src="static/logo.svg" alt="Logo">
   </a>
 
 <h3 align="center">gomrefdash</h3>
@@ -63,7 +63,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://ref.m17.link)
 
-A dashboard written for mrefd 0.4.0+ in Go!
+A dashboard written for mrefd 0.5.0+ in Go!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -74,6 +74,7 @@ A dashboard written for mrefd 0.4.0+ in Go!
 * [![Go][Go.dev]][Go-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
+* [![Vue][Vue.js]][Vue-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -203,7 +204,7 @@ Project Link: [https://github.com/kc1awv/gomrefdash](https://github.com/kc1awv/g
 ## Acknowledgments
 
 * [Tom N7TAE](https://github.com/n7tae) _Creator of mrefd and inspiration for development_
-* [Dave AC8ZD](https://github.com/dbehnke) _Beta testing and great feedback, page refresh code_
+* [Dave AC8ZD](https://github.com/dbehnke) _Beta testing and great feedback, page refresh code, many improvements_
 * edgetriggered _Teaching me finer points of Golang, help and guidance_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -229,5 +230,7 @@ Project Link: [https://github.com/kc1awv/gomrefdash](https://github.com/kc1awv/g
 [Go-url]: https://go.dev/
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-url]: https://vuejs.org/
 [Discord]: https://img.shields.io/discord/771492414120656907?style=for-the-badge
 [Discord-url]: https://discord.gg/G8zGphypf6
