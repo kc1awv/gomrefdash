@@ -27,6 +27,9 @@
             </table>
           </div>
           <div id="modules" class="col-sm-4">
+            <div class="text-center">
+              <img src="static/logo.svg" height="80" />
+            </div>
             <table class="table">
               <thead>
                 <th class="text-center">Modules in Use</th>
@@ -53,109 +56,58 @@
       </div>
     </main>
     <script type="module">
-    import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
+      import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
+      import { localTimeString } from '{{ .config.SubPath }}/static/utilities.js'
 
-const refreshTime = {{ .config.Refresh }} * 1000;
+      const refreshTime = {{ .config.Refresh }} * 1000;
 
-// station stuff
-createApp({
-    delimiters: ['${', '}'],
-    data() {
-        return {
-            stationdata: {},
-            timer: ''
-        }
-    },
-    methods: {
-      fetchStationsList () {
-        $.getJSON('{{ .config.SubPath }}/json/stations', (stationdata) => {
-          stationdata.stations.forEach(function(station, index) {
-            function getDateString(dt) {
-              console.log(dt)
-              const year = dt.getFullYear()
-              const m = dt.getMonth() + 1
-              var month = "" + m
-              if (m < 10) {
-                month = "0" + m
+      // station stuff
+      createApp({
+          delimiters: ['${', '}'],
+          data() {
+              return {
+                  stationdata: {},
+                  timer: ''
               }
-              const d = dt.getDate()
-              var day = "" + d
-              if (d < 10) {
-                day = "0" + d
-              }
-              return (day+"."+month+"."+year)
-            }
-            function getTimeString(dt) {
-              const h = dt.getHours()
-              var hour = "" + h
-              if (h < 10) {
-                hour = "0" + h
-              }
-              const m = dt.getMinutes()
-              var min = "" + m
-              if (m < 10) {
-                min = "0" + m
-              }
-              //const s = dt.getSeconds()
-              //var sec = "" + s
-              //if (s < 10) {
-              //  sec = "0" + s
-              //}
-              return (hour+":"+min)
-            } 
-            function diffSeconds(dt2, dt1) {
-              var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+          },
+          methods: {
+            fetchStationsList () {
+              $.getJSON('{{ .config.SubPath }}/json/stations', (stationdata) => {
+                stationdata.stations.forEach(function(station, index) {
+                  
+                  station.lastheardlocal = localTimeString(station.lastheard)
+                  stationdata.stations[index] = station     
+                });
+                this.stationdata = stationdata
+              });
+            },
+          },
+          mounted() {
+              this.timer = setInterval(this.fetchStationsList, refreshTime)
+              this.fetchStationsList()
+          },
+      }).mount('#stations')
 
-              return Math.abs(Math.round(diff));
-            }
-            function localTimeString(dateTimeString) {
-              const now = new Date();
-              const then = new Date(dateTimeString)
-              if (now.toLocaleDateString() == then.toLocaleDateString()) {
-                const dSeconds = diffSeconds(now, then)
-                if (dSeconds < 60) {
-                  return(dSeconds + " sec ago")
-                }
-                if (dSeconds < 60 * 5) {
-                  return(Math.abs(Math.round(dSeconds / 60)) + " min ago")
-                }
-                return(getTimeString(then))
+      // modules stuff
+      createApp({
+          delimiters: ['${', '}'],
+          data() {
+              return {
+                  moduledata: {},
+                  timer: ''
               }
-              return(getDateString(then) + " " + getTimeString(then))
-            }
-            station.lastheardlocal = localTimeString(station.lastheard)
-            stationdata.stations[index] = station     
-          });
-          this.stationdata = stationdata
-        });
-      },
-    },
-    mounted() {
-        this.timer = setInterval(this.fetchStationsList, refreshTime)
-        this.fetchStationsList()
-    },
-}).mount('#stations')
-
-// modules stuff
-createApp({
-    delimiters: ['${', '}'],
-    data() {
-        return {
-            moduledata: {},
-            timer: ''
-        }
-    },
-    methods: {
-        fetchModulesList () {
-            $.getJSON('{{ .config.SubPath }}/json/modulesinuse', (moduledata) => {
-                this.moduledata = moduledata
-            });
-        },
-    },
-    mounted() {
-        this.timer = setInterval(this.fetchModulesList, refreshTime)
-        this.fetchModulesList()
-    },
-}).mount('#modules')
-</script>
+          },
+          methods: {
+              fetchModulesList () {
+                  $.getJSON('{{ .config.SubPath }}/json/modulesinuse', (moduledata) => {
+                      this.moduledata = moduledata
+                  });
+              },
+          },
+          mounted() {
+              this.timer = setInterval(this.fetchModulesList, refreshTime)
+              this.fetchModulesList()
+          },
+      }).mount('#modules')
+    </script>
 {{ template "footer.html" .}}

@@ -17,8 +17,8 @@
                   <th scope="row">${ peer.callsign }</th>
                   <td>${ peer.ip }</td>
                   <td>${ peer.linkedmodule }</td>
-                  <td>${ peer.connecttime }</td>
-                  <td>${ peer.lastheardtime }</td> 
+                  <td>${ peer.connecttimelocal }</td>
+                  <td>${ peer.lastheardtimelocal }</td> 
                 </tr>
               </tbody>
             </table>
@@ -27,6 +27,7 @@
     </main>
     <script type="module">
       import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js'
+      import { localTimeString } from '{{ .config.SubPath }}/static/utilities.js'
 
 const refreshTime = {{ .config.Refresh }} * 1000;
 
@@ -40,11 +41,16 @@ createApp({
         }
     },
     methods: {
-        fetchPeersList () {
-            $.getJSON('{{ .config.SubPath }}/json/peers', (peersdata) => {
-                this.peersdata = peersdata
-            });
-        },
+      fetchPeersList () {
+        $.getJSON('{{ .config.SubPath }}/json/peers', (peersdata) => {
+          peersdata.forEach(function(peer, index) {
+            peer.connecttimelocal = localTimeString(peer.connecttime)
+            peer.lastheardtimelocal = localTimeString(peer.lastheardtime)
+            peersdata[index] = peer     
+          });
+          this.peersdata = peersdata
+        });
+      },
     },
     created() {
         this.timer = setInterval(this.fetchPeersList, refreshTime)
