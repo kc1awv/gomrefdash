@@ -6,19 +6,13 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{ .config.SubPath }}/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ .config.SubPath }}/links">Links</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ .config.SubPath }}/peers">Peers</a>
-              </li>
-            </ul>
-            <div class="text-white">mrefd Version: {{ range $k, $v := .info }}{{ index $v 0 }}{{end}} | Dashboard Version: {{ .version }}</div>
+            <div class="navbar-nav">
+              <a {{ if eq .title "Last Heard" }}class="nav-link active" aria-current="page"{{ else }}class="nav-link"{{ end }} href="{{ .config.SubPath }}/">Home</a>
+              <a {{ if eq .title "Links" }}class="nav-link active" aria-current="page"{{ else }}class="nav-link"{{ end }} href="{{ .config.SubPath }}/links">Links</a>
+              <a {{ if eq .title "Peers" }}class="nav-link active" aria-current="page"{{ else }}class="nav-link"{{ end }} href="{{ .config.SubPath }}/peers">Peers</a>
+            </div>
           </div>
+          <div class="text-white text-end">mrefd Version: {{ range $k, $v := .info }}{{ index $v 0 }}{{end}} | Dashboard Version: {{ .version }}</div>
         </div>
       </nav>
     </header>
