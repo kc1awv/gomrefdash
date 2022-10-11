@@ -66,15 +66,19 @@
           delimiters: ['${', '}'],
           data() {
               return {
-                  stationdata: {},
+                  stationdata: { "stations": []},
                   timer: ''
               }
           },
           methods: {
             fetchStationsList () {
               $.getJSON('{{ .config.SubPath }}/json/stations', (stationdata) => {
+                if (!stationdata.hasOwnProperty("stations") || stationdata.stations == null) {
+                  // no stations, so do nothing
+                  return
+                }
+                
                 stationdata.stations.forEach(function(station, index) {
-                  
                   station.lastheardlocal = localTimeString(station.lastheard)
                   stationdata.stations[index] = station     
                 });
