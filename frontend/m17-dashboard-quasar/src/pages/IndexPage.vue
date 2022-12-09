@@ -54,6 +54,10 @@ import { defineComponent } from "vue";
 import { ref } from "vue";
 import { localTimeString } from "../js/utilities.js";
 import { useQuasar } from "quasar";
+import { createArrayExpression } from "@vue/compiler-core";
+// Import the Axios library
+import axios from 'axios';
+
 
 const station_columns = [
   {
@@ -267,10 +271,10 @@ export default defineComponent({
         this.station_columns = this.station_columns();
 
         //this.station_rows = [];
-        this.fetchStationsListMock();
+        this.fetchStationsList();
       }
     );
-    this.fetchStationsListMock();
+    this.fetchStationsList();
     this.modules = MockModulesInUse;
     const $q = useQuasar();
     $q.dark.set(false);
@@ -293,15 +297,23 @@ export default defineComponent({
         this.stationdata = stationdata;
       });
     },*/
-    fetchStationsListMock() {
+    fetchStationsList() {
       let stationdata = mockStationData;
-      console.log("fetch debug");
-      stationdata.stations.forEach(function (station, index) {
-        station.id = index + 1;
-        station.lastheardlocal = localTimeString(station.lastheard);
-        stationdata.stations[index] = station;
-      });
-      this.station_rows = stationdata.stations;
+      let url = "/json/stations"
+      axios.get(url)
+        .then((response) => {
+          let stationdata = response.data;
+          stationdata.stations.forEach(function (station, index) {
+            station.id = index + 1;
+            station.lastheardlocal = localTimeString(station.lastheard);
+            stationdata.stations[index] = station;
+          });
+          this.station_rows = stationdata.stations;
+        })
+        .catch((error) => {
+          // Print any error messages to the console
+          console.error(error);
+        });
     },
   },
 });
