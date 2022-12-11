@@ -1,7 +1,6 @@
 package main
 
 import (
-	"net/http"
 	"sort"
 	"strings"
 
@@ -117,49 +116,4 @@ func (d *Dashboard) showModulesInUseJSON(c *gin.Context) {
 		moduleData = append(moduleData, moduleInfo{Name: name, Callsigns: callSigns})
 	}
 	c.JSON(200, moduleData)
-}
-
-func (d *Dashboard) showIndexPage(c *gin.Context) {
-	r := d.Reflector
-	info := r.GetInfo()
-	c.HTML(
-		http.StatusOK,
-		"index.html",
-		gin.H{
-			"title":   "Last Heard",
-			"version": dver,
-			"info":    info,
-			"config":  d.Config,
-		},
-	)
-}
-
-func (d *Dashboard) showLinksPage(c *gin.Context) {
-	r := d.Reflector
-	info := r.GetInfo()
-	c.HTML(
-		http.StatusOK,
-		"links.html",
-		gin.H{
-			"title":   "Links",
-			"version": dver,
-			"info":    info,
-			"config":  d.Config,
-		},
-	)
-}
-
-func (d *Dashboard) showPeersPage(c *gin.Context) {
-	r := d.Reflector
-	info := r.GetInfo()
-	c.HTML(
-		http.StatusOK,
-		"peers.html",
-		gin.H{
-			"title":   "Peers",
-			"version": dver,
-			"info":    info,
-			"config":  d.Config,
-		},
-	)
 }
