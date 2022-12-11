@@ -26,7 +26,7 @@ func NewDashboard(config *Config, version string) (*Dashboard, error) {
 		gin.SetMode(gin.ReleaseMode)
 	}
 	router := gin.Default()
-	router.LoadHTMLGlob("templates/*")
+
 	subPath := router.Group(config.SubPath)
 	{
 		subPath.GET("/status", d.showStatus) //dashboard status metadata
