@@ -8,6 +8,21 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// combines config and reflector data into json for the dashboard view
+func (d *Dashboard) showMetadata(c *gin.Context) {
+	d.Reflector.refreshIfNeeded()
+	d.Reflector.Lock.Lock()
+	defer d.Reflector.Lock.Unlock()
+	c.JSON(200, gin.H{
+		"sysop_email":        d.Config.Email,
+		"ipV4":               d.Config.IPv4,
+		"ipV6":               d.Config.IPv6,
+		"reflector_callsign": d.Reflector.ReflectorData.Callsign,
+		"reflector_version":  d.Reflector.ReflectorData.Version,
+		"dashboard_version":  d.Version,
+	})
+}
+
 func (d *Dashboard) showStatus(c *gin.Context) {
 	r := d.Reflector
 	r.refreshIfNeeded()

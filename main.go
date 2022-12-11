@@ -30,7 +30,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("unable to get config: %s", err)
 	}
-	dashboard, err := NewDashboard(config)
+	dashboard, err := NewDashboard(config, dver)
 	if err != nil {
 		log.Fatalf("unable to create dashboard: %s", err)
 	}

@@ -20,6 +20,10 @@ package: gomrefdash gomrefdash-$(FILEVERSION).tar.gz
 dev-frontend:
 	cd frontend/m17-dashboard-quasar && quasar dev
 
+.PHONY: compile-frontend
+compile-frontend:
+	cd frontend/m17-dashboard-quasar && quasar build
+
 gomrefdash-$(FILEVERSION).tar.gz: gomrefdash
 	tar cfz gomrefdash-$(FILEVERSION).tar.gz gomrefdash templates static .env.sample
 
