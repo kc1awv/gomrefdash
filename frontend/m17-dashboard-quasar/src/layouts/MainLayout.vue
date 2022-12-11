@@ -2,12 +2,15 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar>
-        <q-toolbar-title><a to="/">M17 Dashboard</a></q-toolbar-title>
+        <q-toolbar-title><a to="/">{{ metadata.reflector_callsign }}</a></q-toolbar-title>
         <q-tabs>
           <q-route-tab to="/" label="Home" />
           <q-route-tab to="/links" label="Links" />
           <q-route-tab to="/peers" label="Peers" />
         </q-tabs>
+    <q-btn :label="mode === 'light' ? 'Light Mode' : 'Dark Mode'" color="primary" @click="toggleMode" v-model="$q.dark" />
+
+
       </q-toolbar>
     </q-header>
 
@@ -17,11 +20,8 @@
 
     <q-footer align="right" elevated class="bg-grey-8 text-white">
       <div class="row">
-        <div class="col-6" align="left">
-          mrefd Version: 0.7.0-dht | Dashboard Version: 0.1.3-2449afa
-        </div>
-        <div class="col-3" align="right" right>
-          Sysop: me@me.com IP: 192.168.1.30
+        <div class="col-12" align="left">
+          mrefd Version: {{ metadata.reflector_version }} | Dashboard Version: {{ metadata.dashboard_version }} | Sysop: {{ metadata.sysop_email }} | IP: {{ metadata.ipV4 }} {{ metadata.ipV6 }}
         </div>
       </div>
     </q-footer>
@@ -32,68 +32,57 @@
 import { defineComponent, ref } from "vue";
 import { useQuasar } from "quasar";
 
-const linksList = [
-  {
-    title: "Docs",
-    caption: "quasar.dev",
-    icon: "school",
-    link: "https://quasar.dev",
-  },
-  {
-    title: "Github",
-    caption: "github.com/quasarframework",
-    icon: "code",
-    link: "https://github.com/quasarframework",
-  },
-  {
-    title: "Discord Chat Channel",
-    caption: "chat.quasar.dev",
-    icon: "chat",
-    link: "https://chat.quasar.dev",
-  },
-  {
-    title: "Forum",
-    caption: "forum.quasar.dev",
-    icon: "record_voice_over",
-    link: "https://forum.quasar.dev",
-  },
-  {
-    title: "Twitter",
-    caption: "@quasarframework",
-    icon: "rss_feed",
-    link: "https://twitter.quasar.dev",
-  },
-  {
-    title: "Facebook",
-    caption: "@QuasarFramework",
-    icon: "public",
-    link: "https://facebook.quasar.dev",
-  },
-  {
-    title: "Quasar Awesome",
-    caption: "Community Quasar projects",
-    icon: "favorite",
-    link: "https://awesome.quasar.dev",
-  },
-];
+// Import the Axios library
+import axios from "axios";
+import { store } from "quasar/wrappers";
+let metadata_default = {"reflector_callsign": "", "dashboard_version":"","ipV4":"","ipV6":"","":"","reflector_version":"","sysop_email":""};
 
 export default defineComponent({
   name: "MainLayout",
 
   components: {
-    //EssentialLink,
   },
 
   setup() {
     const leftDrawerOpen = ref(false);
-
     return {
-      essentialLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
     };
+  },
+  data() {
+    this.$q.dark.set("auto");
+    let mode = "light";
+    if (this.$q.dark.isActive) {
+      mode = "dark";
+    }
+    return {
+      mode: mode,
+      metadata: metadata_default,
+    };
+  },
+  mounted() {
+    this.fetchMetadata();
+  },
+  methods: {
+    fetchMetadata() {
+      let url = "/json/metadata"
+      axios.get(url)
+        .then((response) => {
+          this.metadata = response.data;
+        })
+        .catch((error) => {
+          // Print any error messages to the console
+          console.error(error);
+        });
+    },
+    toggleMode() {
+      // Switch between light and dark mode
+      this.mode = this.mode === "light" ? "dark" : "light";
+      this.$q.dark.toggle();
+    },
   },
 });
 </script>

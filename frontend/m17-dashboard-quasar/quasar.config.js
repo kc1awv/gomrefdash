@@ -90,7 +90,7 @@ module.exports = configure(function (/* ctx */) {
       // https: true
       open: true, // opens browser window automatically
       proxy: {
-        '/json': 'https://ref.m17.link',
+        '/json': 'http://localhost:3000',
       }
     },
 
@@ -109,7 +109,7 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['Dark']
     },
 
     // animations: 'all', // --- includes all animations
