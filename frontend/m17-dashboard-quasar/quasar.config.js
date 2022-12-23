@@ -67,6 +67,9 @@ module.exports = configure(function (/* ctx */) {
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
+      publicPath: '/',
+      assetsDir: '/',
+
       // publicPath: '/',
       // analyze: true,
       // env: {},
@@ -90,7 +93,7 @@ module.exports = configure(function (/* ctx */) {
       // https: true
       open: true, // opens browser window automatically
       proxy: {
-        '/json': 'http://localhost:3000',
+        '/json':  'https://m17.ac8zd.com',
       }
     },
 

@@ -1,19 +1,36 @@
 <template>
   <div class="q-pa-sm">
     <div class="row">
-      <div class="col-xs-12 col-md-8">
+      <div class="col-xs-12 col-sm-10 col-md-8">
         <div class="q-pa-md">
-          <q-table
-            :rows="station_rows"
-            :columns="station_columns"
-            row-key="name"
-            virtual-scroll
-            v-model:pagination="pagination"
-            :rows-per-page-options="[0]"
-          />
+          <q-markup-table>
+            <thead>
+              <tr>
+                <th class="gt-xs text-left" style="max-width:50px">#</th>
+                <th class="text-left" style="max-width:150px">Callsign</th>
+                <th class="text-left" style="max-width:50px">Suf</th>
+                <th class="text-left" style="max-width:100px">Link/Peer</th>
+                <th class="text-left" style="max-width:50px">Mod</th>
+                <th class="text-left" style="max-width:150px">Last Heard</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="station in station_rows" :key="station">
+                <td class="gt-xs text-left" style="max-width:50px">{{ station.id }}</td>
+                <td class="text-right" style="max-width:150px">
+                  <q-btn v-if="station.txactive == true" color="red" text-color="white" :label="station.callsign" :href="`https://www.qrz.com/db/${station.callsign}`" target="_blank" />
+                  <q-btn v-else flat :label="station.callsign" :href="`https://www.qrz.com/db/${station.callsign}`" target="_blank" />
+                </td>
+                <td class="text-left" style="max-width:50px">{{ station.callsignsuffix }}</td>
+                <td class="text-left" style="max-width:100px">{{ station.vianode }}</td>
+                <td class="text-left" style="max-width:50px">{{ station.onmodule }}</td>
+                <td class="text-left" style="max-width:150px">{{ station.lastheardlocal }}</td>
+              </tr>
+            </tbody>
+          </q-markup-table>
         </div>
       </div>
-      <div class="col-xs-12 col-md-4">
+      <div class="col-xs-12 col-sm-5 col-md-4">
         <div class="q-pa-sm">
           <q-card>
             <q-card-section>
@@ -52,58 +69,16 @@
 <script>
 import { defineComponent } from "vue";
 import { ref } from "vue";
-import { localTimeString } from "../js/utilities.js";
+import { localTimeString, isLessThanOneMinuteAgo } from "../js/utilities.js";
 import { useQuasar } from "quasar";
 import { createArrayExpression } from "@vue/compiler-core";
 // Import the Axios library
 import axios from 'axios';
 
-
-const station_columns = [
-  {
-    name: "id",
-    align: "right",
-    label: "#",
-    field: "id",
-    sortable: true,
-  },
-  {
-    name: "callsign",
-    label: "Callsign",
-    field: "callsign",
-    sortable: true,
-  },
-  {
-    name: "callsignsuffix",
-    label: "Suffix",
-    field: "callsignsuffix",
-    sortable: false,
-  },
-  {
-    name: "vianode",
-    label: "Link/Peer",
-    field: "vianode",
-    sortable: true,
-  },
-  {
-    name: "onmodule",
-    label: "Module",
-    field: "onmodule",
-    sortable: true,
-  },
-  {
-    name: "lastheardlocal",
-    label: "Last Heard",
-    field: "lastheardlocal",
-    sortable: true,
-  },
-];
-
 export default defineComponent({
   data() {
     return {
       name: "M17 Dashboard",
-      station_columns: station_columns,
       station_rows: [],
       modules: [],
       pagination: ref({
@@ -148,6 +123,7 @@ export default defineComponent({
           stationdata.stations.forEach(function (station, index) {
             station.id = index + 1;
             station.lastheardlocal = localTimeString(station.lastheard);
+            station.txactive = isLessThanOneMinuteAgo(station.lastheard);
             stationdata.stations[index] = station;
           });
           this.station_rows = stationdata.stations;

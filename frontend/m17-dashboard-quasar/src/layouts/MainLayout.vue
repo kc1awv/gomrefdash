@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated>
+    <q-header elevated class="gt-xs">
       <q-toolbar>
         <q-toolbar-title><a to="/">{{ metadata.reflector_callsign }}</a></q-toolbar-title>
         <q-tabs>
@@ -10,7 +10,6 @@
         </q-tabs>
     <q-btn :label="mode === 'light' ? 'Light Mode' : 'Dark Mode'" color="primary" @click="toggleMode" v-model="$q.dark" />
 
-
       </q-toolbar>
     </q-header>
 
@@ -18,10 +17,10 @@
       <router-view />
     </q-page-container>
 
-    <q-footer align="right" elevated class="bg-grey-8 text-white">
+    <q-footer align="right" elevated class="gt-xs bg-grey-8 text-white">
       <div class="row">
         <div class="col-12" align="left">
-          mrefd Version: {{ metadata.reflector_version }} | Dashboard Version: {{ metadata.dashboard_version }} | Sysop: {{ metadata.sysop_email }} | IP: {{ metadata.ipV4 }} {{ metadata.ipV6 }}
+          mrefd Version: {{ metadata.reflector_version }} | Dashboard Version: {{ metadata.dashboard_version }} | Sysop: <a :href="`mailto:${metadata.sysop_email}`">{{ metadata.sysop_email }}</a> | IP: {{ metadata.ipV4 }} {{ metadata.ipV6 }}
         </div>
       </div>
     </q-footer>

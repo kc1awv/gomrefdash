@@ -1,4 +1,4 @@
-export { getDateString, getTimeString, localTimeString };
+export { getDateString, getTimeString, localTimeString, isLessThanOneMinuteAgo };
 
 function getDateString(dt) {
   const year = dt.getFullYear();
@@ -12,7 +12,7 @@ function getDateString(dt) {
   if (d < 10) {
     day = "0" + d;
   }
-  return day + "." + month + "." + year;
+  return year + "." + month + "." + day;
 }
 function getTimeString(dt) {
   const h = dt.getHours();
@@ -48,4 +48,14 @@ function localTimeString(dateTimeString) {
     return getTimeString(then);
   }
   return getDateString(then) + " " + getTimeString(then);
+}
+
+function isLessThanOneMinuteAgo(dateTimeString) {
+  const now = new Date();
+  const then = new Date(dateTimeString);
+  const dSeconds = diffSeconds(now, then);
+  if (dSeconds < 60) {
+    return true;
+  }
+  return false;
 }

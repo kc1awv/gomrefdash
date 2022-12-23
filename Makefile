@@ -23,6 +23,8 @@ dev-frontend:
 .PHONY: compile-frontend
 compile-frontend:
 	cd frontend/m17-dashboard-quasar && quasar build
+	-rm -rf frontend/spa
+	cp -r frontend/m17-dashboard-quasar/dist/spa frontend/spa
 
 gomrefdash-$(FILEVERSION).tar.gz: gomrefdash
 	tar cfz gomrefdash-$(FILEVERSION).tar.gz gomrefdash templates static .env.sample
