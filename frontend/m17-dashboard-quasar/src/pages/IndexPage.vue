@@ -8,8 +8,8 @@
               <tr>
                 <th class="gt-xs text-left" style="max-width:50px">#</th>
                 <th class="text-left" style="max-width:150px">Callsign</th>
-                <th class="text-left" style="max-width:50px">Suf</th>
-                <th class="text-left" style="max-width:100px">Link/Peer</th>
+                <th class="gt-xs text-left" style="max-width:50px">Suf</th>
+                <th class="gt-xs text-left" style="max-width:100px">Link/Peer</th>
                 <th class="text-left" style="max-width:50px">Mod</th>
                 <th class="text-left" style="max-width:150px">Last Heard</th>
               </tr>
@@ -21,8 +21,8 @@
                   <q-btn v-if="station.txactive == true" color="red" text-color="white" :label="station.callsign" :href="`https://www.qrz.com/db/${station.callsign}`" target="_blank" />
                   <q-btn v-else flat :label="station.callsign" :href="`https://www.qrz.com/db/${station.callsign}`" target="_blank" />
                 </td>
-                <td class="text-left" style="max-width:50px">{{ station.callsignsuffix }}</td>
-                <td class="text-left" style="max-width:100px">{{ station.vianode }}</td>
+                <td class="gt-xs text-left" style="max-width:50px">{{ station.callsignsuffix }}</td>
+                <td class="gt-xs text-left" style="max-width:100px">{{ station.vianode }}</td>
                 <td class="text-left" style="max-width:50px">{{ station.onmodule }}</td>
                 <td class="text-left" style="max-width:150px">{{ station.lastheardlocal }}</td>
               </tr>
