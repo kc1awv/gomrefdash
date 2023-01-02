@@ -22,15 +22,20 @@ func (d *Dashboard) showMetadata(c *gin.Context) {
 	})
 }
 
+// showStatus returns runtime information about the reflector and dashboard.
 func (d *Dashboard) showStatus(c *gin.Context) {
 	r := d.Reflector
 	r.refreshIfNeeded()
 	status := struct {
-		LastUpdateUnixTime     int64 `json:"lastupdate"`
-		LastDataUpdateUnixTime int64 `json:"lastmrefdupdate"`
+		LastUpdateUnixTime     int64  `json:"lastupdate"`
+		LastDataUpdateUnixTime int64  `json:"lastmrefdupdate"`
+		ReflectorStatus        string `json:"reflectorstatus"`
+		ReflectorUptimeSeconds int64  `json:"reflectoruptimeseconds"`
 	}{
 		LastUpdateUnixTime:     r.LastUpdateCheckTime.Unix(),
 		LastDataUpdateUnixTime: r.ReflectorData.FileTime.Unix(),
+		ReflectorStatus:        r.Status,
+		ReflectorUptimeSeconds: r.UptimeSeconds,
 	}
 
 	c.JSON(200, status)

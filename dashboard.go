@@ -15,7 +15,7 @@ type Dashboard struct {
 
 func NewDashboard(config *Config, version string) (*Dashboard, error) {
 	// reflector setup
-	reflector, err := NewReflectorFromFile(config.MrefFile)
+	reflector, err := NewReflectorFromFile(config.MrefFile, config.MrefPidFile)
 	if err != nil {
 		return nil, fmt.Errorf("unable to create reflector: %s", err)
 	}
@@ -32,6 +32,7 @@ func NewDashboard(config *Config, version string) (*Dashboard, error) {
 		subPath.GET("/status", d.showStatus) //dashboard status metadata
 		subPath.GET("/json/reflector", d.showReflectorJSON)
 		subPath.GET("/json/stations", d.showStationDataJSON)
+		subPath.GET("/json/status", d.showStatus) //new spot for status
 		subPath.GET("/json/links", d.showLinksDataJSON)
 		subPath.GET("/json/modulesinuse", d.showModulesInUseJSON)
 		subPath.GET("/json/peers", d.showPeers)

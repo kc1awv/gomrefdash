@@ -1,4 +1,4 @@
-export { getDateString, getTimeString, localTimeString, isLessThanOneMinuteAgo };
+export { getDateString, getTimeString, localTimeString, isLessThanOneMinuteAgo, secondsToTime };
 
 function getDateString(dt) {
   const year = dt.getFullYear();
@@ -58,4 +58,23 @@ function isLessThanOneMinuteAgo(dateTimeString) {
     return true;
   }
   return false;
+}
+
+function secondsToTime(seconds) {
+  const days = Math.floor(seconds / 86400);
+  const hours = Math.floor((seconds % 86400) / 3600);
+  const minutes = Math.floor(((seconds % 86400) % 3600) / 60);
+
+  let time = '';
+  if (days > 0) {
+    time += `${days} days, `;
+  }
+  if (hours > 0) {
+    time += `${hours} hours, `;
+  }
+  if (minutes > 0) {
+    time += `${minutes} minutes`;
+  }
+
+  return time;
 }

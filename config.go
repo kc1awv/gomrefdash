@@ -10,15 +10,16 @@ import (
 )
 
 type Config struct {
-	HostPort  string `toml:"hostport"`
-	IPv4      string `toml:"ipv4"`
-	IPv6      string `toml:"ipv6"`
-	Refresh   int    `toml:"refresh"`
-	LastHeard int    `toml:"lastheard"`
-	MrefFile  string `toml:"mreffile"`
-	Email     string `toml:"email"`
-	Debug     bool   `toml:"debug"`
-	SubPath   string `toml:"subpath"`
+	HostPort    string `toml:"hostport"`
+	IPv4        string `toml:"ipv4"`
+	IPv6        string `toml:"ipv6"`
+	Refresh     int    `toml:"refresh"`
+	LastHeard   int    `toml:"lastheard"`
+	MrefFile    string `toml:"mreffile"`
+	MrefPidFile string `toml:"mrefpidfile"`
+	Email       string `toml:"email"`
+	Debug       bool   `toml:"debug"`
+	SubPath     string `toml:"subpath"`
 }
 
 func checkEnvOrErrString(k string) (string, error) {
@@ -69,6 +70,11 @@ func NewConfigFromEnv() (*Config, error) {
 	}
 
 	config.MrefFile, err = checkEnvOrErrString(prefix + "_MREFFILE")
+	if err != nil {
+		return nil, err
+	}
+
+	config.MrefPidFile, err = checkEnvOrErrString(prefix + "_MREFPIDFILE")
 	if err != nil {
 		return nil, err
 	}

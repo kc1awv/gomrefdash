@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"log"
+	"math"
 	"os"
 	"strings"
 	"sync"
@@ -12,10 +13,13 @@ import (
 
 // Reflector struct
 type Reflector struct {
-	Lock                sync.Mutex    `json:"-"`                   // used during cache refreshes or when requested by client
-	LastUpdateCheckTime time.Time     `json:"lastupdatechecktime"` // the last time update was checked
-	ReflectorData       ReflectorData `json:"data"`
-	ReflectorFilePath   string        `json:"-"` // contains the FilePath of reflector file. mrefd.xml
+	Lock                 sync.Mutex    `json:"-"`                   // used during cache refreshes or when requested by client
+	LastUpdateCheckTime  time.Time     `json:"lastupdatechecktime"` // the last time update was checked
+	ReflectorData        ReflectorData `json:"data"`
+	ReflectorFilePath    string        `json:"-"`      // contains the FilePath of reflector file. mrefd.xml
+	ReflectorPidFilePath string        `json:"-"`      // contains the FilePath of reflector pid file. mrefd.pid
+	Status               string        `json:"status"` // contains the status of the reflector. "up" or "down"
+	UptimeSeconds        int64         `json:"uptime"` // contains the uptime of the reflector in seconds
 }
 
 // RelectorData contains data scraped from the mrefd.xml file of mrefd.
@@ -70,12 +74,12 @@ func NewReflectorDataFromFile(filePath string) (*ReflectorData, error) {
 
 // NewReflectorFromFile reads the xml file from filePath into the struct
 // and sets the LastUpdateTime from the file's date.
-func NewReflectorFromFile(filePath string) (*Reflector, error) {
+func NewReflectorFromFile(filePath, pidFilePath string) (*Reflector, error) {
 	reflectorData, err := NewReflectorDataFromFile(filePath)
 	if err != nil {
 		return nil, fmt.Errorf("unable to obtain reflector data for %s: %v", filePath, err)
 	}
-	reflector := Reflector{ReflectorFilePath: filePath, LastUpdateCheckTime: time.Now(), ReflectorData: *reflectorData}
+	reflector := Reflector{ReflectorFilePath: filePath, ReflectorPidFilePath: pidFilePath, LastUpdateCheckTime: time.Now(), ReflectorData: *reflectorData}
 	return &reflector, nil
 }
 
@@ -83,6 +87,13 @@ func NewReflectorFromFile(filePath string) (*Reflector, error) {
 func (r *Reflector) refreshIfNeeded() {
 	r.Lock.Lock()
 	defer r.Lock.Unlock()
+	d, err := mrefdUptime(r.ReflectorPidFilePath, r.ReflectorFilePath)
+	if err != nil {
+		r.Status = "down"
+	} else {
+		r.Status = "up"
+	}
+	r.UptimeSeconds = int64(math.Round(d.Seconds()))
 	r.LastUpdateCheckTime = time.Now()
 	stat, err := os.Stat(r.ReflectorFilePath)
 	if err != nil {

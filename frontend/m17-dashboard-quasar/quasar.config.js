@@ -93,7 +93,7 @@ module.exports = configure(function (/* ctx */) {
       // https: true
       open: true, // opens browser window automatically
       proxy: {
-        '/json':  'https://m17.ac8zd.com',
+        '/json':  'http://localhost:3000',
       }
     },
 
