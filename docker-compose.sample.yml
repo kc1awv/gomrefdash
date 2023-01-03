@@ -6,7 +6,7 @@ services:
       - "3000:3000"
     volumes:
       - /var/log/mrefd.xml:/var/log/mrefd.xml
-      #- ./mrefd.xml:/var/log/mrefd.xml
+      - ./mrefd.pid:/var/run/mrefd.pid
     environment:
       - GOMREFDASH_HOSTPORT=:3000
       - GOMREFDASH_IPV4=127.0.0.1          # Reflector IPv4 address
