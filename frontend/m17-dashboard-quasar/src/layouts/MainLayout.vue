@@ -20,7 +20,7 @@
     <q-footer align="right" elevated class="gt-xs bg-grey-8 text-white">
       <div class="row">
         <div class="col-12" align="left">
-          mrefd Version: {{ metadata.reflector_version }} | mrefd Uptime: {{ status.niceuptime }} | Dashboard Version: {{ metadata.dashboard_version }} | Sysop: <a :href="`mailto:${metadata.sysop_email}`">{{ metadata.sysop_email }}</a> | IP: {{ metadata.ipV4 }} {{ metadata.ipV6 }}
+          mrefd Version: {{ metadata.reflector_version }} Uptime: {{ status.niceuptime }} | Dashboard Version: {{ metadata.dashboard_version }} | Sysop: <a :href="`mailto:${metadata.sysop_email}`" style="color: #FFFFFF">{{ metadata.sysop_email }}</a> | IP: {{ metadata.ipV4 }} {{ metadata.ipV6 }}
         </div>
       </div>
     </q-footer>
@@ -76,6 +76,7 @@ export default defineComponent({
       axios.get(url)
         .then((response) => {
           this.metadata = response.data;
+          if (this.metadata.ipV6 == "NONE") this.metadata.ipV6 = "";
         })
         .catch((error) => {
           // Print any error messages to the console

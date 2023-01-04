@@ -7,7 +7,7 @@
             <thead>
               <tr>
                 <th class="gt-xs text-left" style="max-width:50px">#</th>
-                <th class="text-left" style="max-width:150px">Callsign</th>
+                <th class="text-right" style="max-width:150px"><q-btn flat>Callsign</q-btn></th>
                 <th class="gt-xs text-left" style="max-width:50px">Suf</th>
                 <th class="gt-xs text-left" style="max-width:100px">Link/Peer</th>
                 <th class="text-left" style="max-width:50px">Mod</th>
