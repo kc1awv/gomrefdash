@@ -12,7 +12,6 @@ RUN adduser -u ${uid} -g ${gid} -h /app -D gouser
 USER gouser
 WORKDIR /app
 COPY --from=builder /usr/src/app/gomrefdash .
-COPY --from=builder /usr/src/app/static/ static/
-COPY --from=builder /usr/src/app/templates/ templates/
+COPY --from=builder /usr/src/app/frontend/spa/ frontend/spa/
 EXPOSE 3000
 ENTRYPOINT ./gomrefdash

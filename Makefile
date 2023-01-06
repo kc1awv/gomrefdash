@@ -16,6 +16,16 @@ gomrefdash:
 .PHONY: package
 package: gomrefdash gomrefdash-$(FILEVERSION).tar.gz
 
+.PHONY: dev-frontend
+dev-frontend:
+	cd frontend/m17-dashboard-quasar && quasar dev
+
+.PHONY: compile-frontend
+compile-frontend:
+	cd frontend/m17-dashboard-quasar && quasar build
+	-rm -rf frontend/spa
+	cp -r frontend/m17-dashboard-quasar/dist/spa frontend/spa
+
 gomrefdash-$(FILEVERSION).tar.gz: gomrefdash
 	tar cfz gomrefdash-$(FILEVERSION).tar.gz gomrefdash templates static .env.sample
 

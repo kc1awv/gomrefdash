@@ -1,22 +1,41 @@
 package main
 
 import (
-	"net/http"
 	"sort"
 	"strings"
 
 	"github.com/gin-gonic/gin"
 )
 
+// combines config and reflector data into json for the dashboard view
+func (d *Dashboard) showMetadata(c *gin.Context) {
+	d.Reflector.refreshIfNeeded()
+	d.Reflector.Lock.Lock()
+	defer d.Reflector.Lock.Unlock()
+	c.JSON(200, gin.H{
+		"sysop_email":        d.Config.Email,
+		"ipV4":               d.Config.IPv4,
+		"ipV6":               d.Config.IPv6,
+		"reflector_callsign": d.Reflector.ReflectorData.Callsign,
+		"reflector_version":  d.Reflector.ReflectorData.Version,
+		"dashboard_version":  d.Version,
+	})
+}
+
+// showStatus returns runtime information about the reflector and dashboard.
 func (d *Dashboard) showStatus(c *gin.Context) {
 	r := d.Reflector
 	r.refreshIfNeeded()
 	status := struct {
-		LastUpdateUnixTime     int64 `json:"lastupdate"`
-		LastDataUpdateUnixTime int64 `json:"lastmrefdupdate"`
+		LastUpdateUnixTime     int64  `json:"lastupdate"`
+		LastDataUpdateUnixTime int64  `json:"lastmrefdupdate"`
+		ReflectorStatus        string `json:"reflectorstatus"`
+		ReflectorUptimeSeconds int64  `json:"reflectoruptimeseconds"`
 	}{
 		LastUpdateUnixTime:     r.LastUpdateCheckTime.Unix(),
 		LastDataUpdateUnixTime: r.ReflectorData.FileTime.Unix(),
+		ReflectorStatus:        r.Status,
+		ReflectorUptimeSeconds: r.UptimeSeconds,
 	}
 
 	c.JSON(200, status)
@@ -102,49 +121,4 @@ func (d *Dashboard) showModulesInUseJSON(c *gin.Context) {
 		moduleData = append(moduleData, moduleInfo{Name: name, Callsigns: callSigns})
 	}
 	c.JSON(200, moduleData)
-}
-
-func (d *Dashboard) showIndexPage(c *gin.Context) {
-	r := d.Reflector
-	info := r.GetInfo()
-	c.HTML(
-		http.StatusOK,
-		"index.html",
-		gin.H{
-			"title":   "Last Heard",
-			"version": dver,
-			"info":    info,
-			"config":  d.Config,
-		},
-	)
-}
-
-func (d *Dashboard) showLinksPage(c *gin.Context) {
-	r := d.Reflector
-	info := r.GetInfo()
-	c.HTML(
-		http.StatusOK,
-		"links.html",
-		gin.H{
-			"title":   "Links",
-			"version": dver,
-			"info":    info,
-			"config":  d.Config,
-		},
-	)
-}
-
-func (d *Dashboard) showPeersPage(c *gin.Context) {
-	r := d.Reflector
-	info := r.GetInfo()
-	c.HTML(
-		http.StatusOK,
-		"peers.html",
-		gin.H{
-			"title":   "Peers",
-			"version": dver,
-			"info":    info,
-			"config":  d.Config,
-		},
-	)
 }

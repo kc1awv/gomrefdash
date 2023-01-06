@@ -6,7 +6,7 @@ services:
       - "3000:3000"
     volumes:
       - /var/log/mrefd.xml:/var/log/mrefd.xml
-      #- ./mrefd.xml:/var/log/mrefd.xml
+      - /var/run/mrefd.pid:/var/run/mrefd.pid
     environment:
       - GOMREFDASH_HOSTPORT=:3000
       - GOMREFDASH_IPV4=127.0.0.1          # Reflector IPv4 address
@@ -15,4 +15,5 @@ services:
       - GOMREFDASH_LASTHEARD=20          # Number of stations to display in Last Heard
       - GOMREFDASH_EMAIL=sysop@m17reflector.xyz # email address to contact about the reflector
       - GOMREFDASH_MREFFILE=/var/log/mrefd.xml # where the mrefd.xml is mounted
+      - GOMREFDASH_MREFPIDFILE=/var/run/mrefd.pid # where the mrefd.pid is mounted
       #- GOMREFDASH_SUBPATH=/reflector # uncomment e.g. /reflector would be http://yourhostname/reflector
