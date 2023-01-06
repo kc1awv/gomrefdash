@@ -72,7 +72,7 @@ A dashboard written for mrefd 0.5.0+ in Go!
 ### Built With
 
 * [![Go][Go.dev]][Go-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+* [![Quasar][Quasar.dev]][Quasar-url]
 * [![JQuery][JQuery.com]][JQuery-url]
 * [![Vue][Vue.js]][Vue-url]
 
@@ -224,8 +224,8 @@ Project Link: [https://github.com/kc1awv/gomrefdash](https://github.com/kc1awv/g
 [build-shield]: https://img.shields.io/github/actions/workflow/status/kc1awv/gomrefdash/audit.yml?style=for-the-badge
 [build-url]: https://github.com/kc1awv/gomrefdash/actions/workflow/status/kc1awv/gomrefdashaudit.yml
 [product-screenshot]: Screenshot_2023-01-06_13-26-05.png
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
+[Quasar.dev]: https://img.shields.io/badge/Quasar-16B7FB?style=for-the-badge&logo=quasar&logoColor=black
+[Quasar-url]: https://quasar.dev/
 [Go.dev]: https://img.shields.io/github/go-mod/go-version/kc1awv/gomrefdash?style=for-the-badge
 [Go-url]: https://go.dev/
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
