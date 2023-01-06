@@ -11,7 +11,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/kc1awv/gomrefdash">
-    <img src="static/logo.svg" alt="Logo">
+    <img src="m17reflectors.png" alt="Logo">
   </a>
 
 <h3 align="center">gomrefdash</h3>
@@ -98,7 +98,7 @@ Install Go 1.19+ according to your platform, directions can be found [here](http
    ```sh
    make
    ```
-3. Copy .env.sample and edit to your environment
+3. Copy gomrefdash.sample.toml and edit to your environment
     ```sh
     cp gomrefdash.sample.toml to gomrefdash.toml
     ```
@@ -221,9 +221,9 @@ Project Link: [https://github.com/kc1awv/gomrefdash](https://github.com/kc1awv/g
 [issues-url]: https://github.com/kc1awv/gomrefdash/issues
 [license-shield]: https://img.shields.io/github/license/kc1awv/gomrefdash.svg?style=for-the-badge
 [license-url]: https://github.com/kc1awv/gomrefdash/blob/master/LICENSE.txt
-[build-shield]: https://img.shields.io/github/workflow/status/kc1awv/gomrefdash/Audit?style=for-the-badge
-[build-url]: https://github.com/kc1awv/gomrefdash/actions/workflows/audit.yml
-[product-screenshot]: static/screenshot.png
+[build-shield]: https://img.shields.io/github/actions/workflow/status/kc1awv/gomrefdash/audit.yml?style=for-the-badge
+[build-url]: https://github.com/kc1awv/gomrefdash/actions/workflow/status/kc1awv/gomrefdashaudit.yml
+[product-screenshot]: Screenshot_2023-01-06_13-26-05.png
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [Go.dev]: https://img.shields.io/github/go-mod/go-version/kc1awv/gomrefdash?style=for-the-badge
