@@ -18,7 +18,7 @@
             <tbody>
               <tr v-for="station in station_rows" :key="station">
                 <td class="gt-xs text-right" style="max-width:50px">{{ station.id }}</td>
-                <td class="text-center" style="max-width:50px"><img width=30 :src="`flags/${station.country.countrycode}.png`"/></td>
+                <td class="text-center" style="max-width:50px"><img width=30 :src="`/flags/${station.country.countrycode}.png`"/></td>
                 <td class="text-center" style="max-width:150px">
                   <q-btn icon-right="campaign" v-if="station.txactive == true" color="red" text-color="white" :href="`https://www.qrz.com/db/${station.callsign}`" target="_blank"><u>{{ station.callsign }}</u></q-btn>
                   <q-btn v-else flat :href="`https://www.qrz.com/db/${station.callsign}`" target="_blank"><u>{{ station.callsign }}</u></q-btn>

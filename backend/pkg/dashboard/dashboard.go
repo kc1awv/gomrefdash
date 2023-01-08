@@ -29,7 +29,6 @@ func NewDashboard(config *config.Config, version string) (*Dashboard, error) {
 	if err != nil {
 		return nil, fmt.Errorf("unable to create country callsigns: %s", err)
 	}
-	log.Println(countryCallsigns)
 
 	d := Dashboard{Version: version, Config: config, Reflector: reflector, CountryCallsigns: countryCallsigns}
 	// router
@@ -51,6 +50,7 @@ func NewDashboard(config *config.Config, version string) (*Dashboard, error) {
 		subPath.GET("/json/countries", d.showCountries)
 		subPath.Static("/assets", "frontend/spa/assets")
 		subPath.Static("/icons", "frontend/spa/icons")
+		subPath.Static("/flags", "frontend/spa/flags")
 		subPath.StaticFile("/index.html", "frontend/spa/index.html")
 		subPath.StaticFile("/", "frontend/spa/index.html")
 		subPath.StaticFile("/favicon.ico", "frontend/spa/favicon.ico")
