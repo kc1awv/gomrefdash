@@ -30,7 +30,7 @@ func NewCountryCallsignsFromFile(filename string) (*CountryCallsigns, error) {
 		line := scanner.Text()
 		fields := strings.Split(line, ";")
 		country := fields[0]
-		countryCode := fields[1]
+		countryCode := strings.ToLower(fields[1])
 		callsignPrefixes := strings.Split(fields[2], "-")
 		countries = append(countries, Country{country, countryCode, callsignPrefixes})
 	}
