@@ -6,8 +6,9 @@
           <q-markup-table>
             <thead>
               <tr>
-                <th class="gt-xs text-left" style="max-width:50px">#</th>
-                <th class="text-right" style="max-width:150px"><q-btn flat>Callsign</q-btn></th>
+                <th class="gt-xs text-right" style="max-width:50px">#</th>
+                <th class="text-center" style="max-width:50px">Flag</th>
+                <th class="text-center" style="max-width:150px"><q-btn flat no-caps>Callsign</q-btn></th>
                 <th class="gt-xs text-left" style="max-width:50px">Suf</th>
                 <th class="gt-xs text-left" style="max-width:100px">Link/Peer</th>
                 <th class="text-left" style="max-width:50px">Mod</th>
@@ -16,10 +17,11 @@
             </thead>
             <tbody>
               <tr v-for="station in station_rows" :key="station">
-                <td class="gt-xs text-left" style="max-width:50px">{{ station.id }}</td>
-                <td class="text-right" style="max-width:150px">
-                  <q-btn v-if="station.txactive == true" color="red" text-color="white" :label="station.callsign" :href="`https://www.qrz.com/db/${station.callsign}`" target="_blank" />
-                  <q-btn v-else flat :label="station.callsign" :href="`https://www.qrz.com/db/${station.callsign}`" target="_blank" />
+                <td class="gt-xs text-right" style="max-width:50px">{{ station.id }}</td>
+                <td class="text-center" style="max-width:50px"><img width=30 :src="`flags/${station.country.countrycode}.png`"/></td>
+                <td class="text-center" style="max-width:150px">
+                  <q-btn v-if="station.txactive == true" color="red" text-color="white" :href="`https://www.qrz.com/db/${station.callsign}`" target="_blank"><u>{{ station.callsign }}</u></q-btn>
+                  <q-btn icon="volume" v-else flat :href="`https://www.qrz.com/db/${station.callsign}`" target="_blank"><u>{{ station.callsign }}</u></q-btn>
                 </td>
                 <td class="gt-xs text-left" style="max-width:50px">{{ station.callsignsuffix }}</td>
                 <td class="gt-xs text-left" style="max-width:100px">{{ station.vianode }}</td>

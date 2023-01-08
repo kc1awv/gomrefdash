@@ -7,6 +7,7 @@ services:
     volumes:
       - /var/log/mrefd.xml:/var/log/mrefd.xml
       - /var/run/mrefd.pid:/var/run/mrefd.pid
+      - /var/callsign_country.csv:/var/callsign_country.csv
     environment:
       - GOMREFDASH_HOSTPORT=:3000
       - GOMREFDASH_IPV4=127.0.0.1          # Reflector IPv4 address
@@ -17,3 +18,5 @@ services:
       - GOMREFDASH_MREFFILE=/var/log/mrefd.xml # where the mrefd.xml is mounted
       - GOMREFDASH_MREFPIDFILE=/var/run/mrefd.pid # where the mrefd.pid is mounted
       #- GOMREFDASH_SUBPATH=/reflector # uncomment e.g. /reflector would be http://yourhostname/reflector
+      - GOMREFDASH_CALLSIGNCOUNTRYFILE=/var/callsign_country.csv # path to callsign_country.csv file
+    restart: always
