@@ -11,7 +11,7 @@ version:
 	echo $(VERSION)
 
 gomrefdash:
-	GOOS=$(GOOS) GOARCH=$(GOARCH) GOARM=$(GOARM) go build -o gomrefdash -ldflags "-X main.dver=$(VERSION)"
+	cd backend/cmd/dashboard && GOOS=$(GOOS) GOARCH=$(GOARCH) GOARM=$(GOARM) go build -o ../../../gomrefdash -ldflags "-X main.dver=$(VERSION)"
 
 .PHONY: package
 package: gomrefdash gomrefdash-$(FILEVERSION).tar.gz
@@ -51,7 +51,7 @@ docker-compose-down:
 
 .PHONY: run
 run:
-	go run -ldflags "-X main.dver=$(VERSION)" *.go
+	go run -ldflags "-X main.dver=$(VERSION)" backend/cmd/dashboard/*.go
 
 .PHONY: clean
 clean:
