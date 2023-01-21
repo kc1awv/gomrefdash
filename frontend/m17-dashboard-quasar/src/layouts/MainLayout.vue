@@ -2,7 +2,10 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated class="gt-xs">
       <q-toolbar>
-        <q-toolbar-title><q-avatar><img style="background-color:white;" src="/icons/favicon-96x96.png"/></q-avatar> <a to="/">{{ metadata.reflector_callsign }}</a></q-toolbar-title>
+        <q-avatar><img style="background-color:white;" src="/icons/favicon-96x96.png"/></q-avatar>
+        <q-toolbar-title>
+          <a to="/">{{ metadata.reflector_callsign }}</a>
+        </q-toolbar-title>
         <q-tabs>
           <q-route-tab to="/" label="Home" />
           <q-route-tab to="/links" label="Links" />
