@@ -129,6 +129,14 @@ export default defineComponent({
             stationdata.stations[index] = station;
           });
           this.station_rows = stationdata.stations;
+          if (stationdata.stations.length > 0) {
+            if (stationdata.stations[0].txactive == true) {
+              this.name = "TX: " + stationdata.stations[0].callsign;
+            } else {
+              this.name = this.metadata.reflector_callsign + " Dashboard";
+            }
+            document.title = this.name;
+          }
         })
         .catch((error) => {
           // Print any error messages to the console
