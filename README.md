@@ -114,14 +114,23 @@ Install Go 1.19+ according to your platform, directions can be found [here](http
 gomrefdash.toml:
 
 `hostport` - the port on which the gomrefdash web server will run
+
 `ipv4` - listening IPv4 address of mrefd
+
 `ipv6` - listening IPv6 address of mrefd
+
 `refresh` - refresh rate of the data on the web pages in seconds
+
 `lastheard` - number of stations to show in the last heard list
+
 `mreffile` - path to the mrefd XML log file location
+
 `mrefpidfile` - path to the PID file for mrefd
+
 `email` - reflector sysop's email address
+
 `debug` - boolean option to run Gin in debug mode
+
 `subpath` - if your dashboard needs to run in a subpath behind a 
 reverse proxy, e.g. "/reflector" would be http://yourhostname/reflector, 
 leave blank for no sub path
