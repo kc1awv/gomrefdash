@@ -30,8 +30,6 @@
   </p>
 </div>
 
-
-
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -57,8 +55,6 @@
   </ol>
 </details>
 
-
-
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://ref.m17.link)
@@ -66,8 +62,6 @@
 A dashboard written for mrefd 0.5.0+ in Go!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 
@@ -78,15 +72,17 @@ A dashboard written for mrefd 0.5.0+ in Go!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ## Getting Started
 
 Clone, build, and run!
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ### Prerequisites
 
 Install Go 1.19+ according to your platform, directions can be found [here](https://go.dev/doc/install)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Installation
 
@@ -140,7 +136,9 @@ built-in. That is what the `hostport` defines in the TOML configuration
 file. If you are only running gomrefdash, and no other web server, then 
 `hostport` can be defined as a 'standard' HTTP port, such as port 80 - 
 so long as the user running the gomrefdash service has permission to 
-run on a port that is below `1024`. The preferred way to run `gomrefdash` 
+run on a port that is below `1024`.
+
+The preferred way to run `gomrefdash` 
 is behind a reverse proxy. This alleviates issues of permissions and 
 system security (we hope you're not running `gomrefdash` as root!) as 
 well as being able to easily enable SSL on a publicly facing web page.
@@ -148,6 +146,8 @@ well as being able to easily enable SSL on a publicly facing web page.
 Recommended web servers to use for reverse proxying are nginx, Apache, 
 and Caddy. Please refer to their documentation on how to set up a 
 reverse proxy.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Advanced (Experimental)
 
@@ -192,18 +192,18 @@ The makefile has various convience functions:
 
 * ```make package``` builds and packages everything up into a tarball for your system
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Roadmap
 
 - [x] Beta Release
 - [x] Refresh page on log file changes, instead of a meta refresh in browser - thanks AC8ZD
 - [x] Create two-column layout for Modules In Use, instead of a single column
-- [ ] Add country flags for callsigns
+- [x] Add country flags for callsigns
 
 See the [open issues](https://github.com/kc1awv/gomrefdash/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ## Contributing
 
@@ -220,15 +220,11 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ## License
 
 Distributed under the GPL 3.0 License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ## Contact
 
@@ -238,8 +234,6 @@ Project Link: [https://github.com/kc1awv/gomrefdash](https://github.com/kc1awv/g
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ## Acknowledgments
 
 * [Tom N7TAE](https://github.com/n7tae) _Creator of mrefd and inspiration for development_
@@ -247,7 +241,6 @@ Project Link: [https://github.com/kc1awv/gomrefdash](https://github.com/kc1awv/g
 * edgetriggered _Teaching me finer points of Golang, help and guidance_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 [contributors-shield]: https://img.shields.io/github/contributors/kc1awv/gomrefdash.svg?style=for-the-badge
