@@ -3,6 +3,7 @@ package dashboard
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"time"
 )
 
@@ -56,6 +57,20 @@ func mrefdUptime(pidFile, checkFile string) (time.Duration, error) {
 		return uptime, fmt.Errorf("check file is older than two minutes")
 	}
 	return uptime, nil
+}
+
+func mrefdCheckService() {
+	cmd := exec.Command("systemctl", "check", "mrefd")
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		if exitErr, ok := err.(*exec.ExitError); ok {
+			fmt.Printf("systemctl finished with non-zero: %v\n", exitErr)
+		} else {
+			fmt.Printf("failed to run systemctl: %v", err)
+			os.Exit(1)
+		}
+	}
+	fmt.Printf("Status is: %s\n", string(out))
 }
 
 // if needed to test the function
