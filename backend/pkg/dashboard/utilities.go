@@ -59,7 +59,7 @@ func mrefdUptime(pidFile, checkFile string) (time.Duration, error) {
 	return uptime, nil
 }
 
-func mrefdCheckService() {
+func mrefdCheckService() ([]byte, error) {
 	cmd := exec.Command("systemctl", "check", "mrefd")
 	out, err := cmd.CombinedOutput()
 	if err != nil {
@@ -70,7 +70,7 @@ func mrefdCheckService() {
 			os.Exit(1)
 		}
 	}
-	fmt.Printf("Status is: %s\n", string(out))
+	return out, nil
 }
 
 // if needed to test the function
