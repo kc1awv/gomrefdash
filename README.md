@@ -154,6 +154,10 @@ reverse proxy.
 These are some things that aren't officially supported, but you can try it out.
 ### Docker
 
+You may wish to to use https://github.com/mfiscus/mrefd-docker which contains both mrefd and the dashboard.
+
+Below are legacy instructions to use the docker solution in this repository.
+
 #### Some Assumptions
 
 1. mrefd is already running on the system running docker.
