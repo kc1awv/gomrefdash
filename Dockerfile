@@ -1,13 +1,13 @@
-FROM golang:alpine as builder
-RUN apk add make git
+FROM golang:bookworm as builder
+RUN apt-get install -y make git
 COPY ./ /usr/src/app/
 WORKDIR /usr/src/app
 RUN make clean && make
 
-FROM alpine:latest
+FROM debian:bookworm-slim
 ARG uid=1000
 ARG gid=1000
-RUN apk add file
+#RUN apk add file
 RUN adduser -u ${uid} -g ${gid} -h /app -D gouser
 USER gouser
 WORKDIR /app
