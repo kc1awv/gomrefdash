@@ -154,6 +154,10 @@ reverse proxy.
 These are some things that aren't officially supported, but you can try it out.
 ### Docker
 
+You may wish to to use https://github.com/mfiscus/mrefd-docker which contains both mrefd and the dashboard.
+
+Below are legacy instructions to use the docker solution in this repository.
+
 #### Some Assumptions
 
 1. mrefd is already running on the system running docker.
@@ -197,7 +201,7 @@ The makefile has various convience functions:
 ## Roadmap
 
 - [x] Beta Release
-- [x] Refresh page on log file changes, instead of a meta refresh in browser - thanks AC8ZD
+- [x] Refresh page on log file changes, instead of a meta refresh in browser - thanks KF8S
 - [x] Create two-column layout for Modules In Use, instead of a single column
 - [x] Add country flags for callsigns
 
@@ -237,7 +241,7 @@ Project Link: [https://github.com/kc1awv/gomrefdash](https://github.com/kc1awv/g
 ## Acknowledgments
 
 * [Tom N7TAE](https://github.com/n7tae) _Creator of mrefd and inspiration for development_
-* [Dave AC8ZD](https://github.com/dbehnke) _Beta testing and great feedback, page refresh code, many improvements_
+* [Dave KF8S](https://github.com/dbehnke) _Beta testing and great feedback, page refresh code, many improvements_
 * edgetriggered _Teaching me finer points of Golang, help and guidance_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
