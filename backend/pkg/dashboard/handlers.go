@@ -101,7 +101,29 @@ func (d *Dashboard) showPeers(c *gin.Context) {
 
 func (d *Dashboard) showLinksDataJSON(c *gin.Context) {
 	d.Reflector.refreshIfNeeded()
-	c.JSON(200, d.Reflector.ReflectorData.Nodes)
+
+	type linkData struct {
+		Callsign      string `json:"callsign"`
+		IPAddress     string `json:"ip"`
+		LinkedModule  string `json:"linkedmodule"`
+		Protocol      string `json:"protocol"`
+		ConnectTime   string `json:"connecttime"`
+		LastHeardTime string `json:"lastheardtime"`
+	}
+
+	links := make([]linkData, 0, len(d.Reflector.ReflectorData.Nodes))
+	for _, node := range d.Reflector.ReflectorData.Nodes {
+		links = append(links, linkData{
+			Callsign:      node.Callsign,
+			IPAddress:     maskIP(node.IPAddress),
+			LinkedModule:  node.LinkedModule,
+			Protocol:      node.Protocol,
+			ConnectTime:   node.ConnectTime,
+			LastHeardTime: node.LastHeardTime,
+		})
+	}
+
+	c.JSON(200, links)
 }
 
 func (d *Dashboard) showModulesInUseJSON(c *gin.Context) {

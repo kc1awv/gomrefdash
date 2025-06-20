@@ -3,6 +3,7 @@ package dashboard
 import (
 	"fmt"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -56,6 +57,32 @@ func mrefdUptime(pidFile, checkFile string) (time.Duration, error) {
 		return uptime, fmt.Errorf("check file is older than two minutes")
 	}
 	return uptime, nil
+}
+
+// maskIP partially hides an IP address so only the first two
+// octets or segments are returned. For IPv4 the result will
+// look like "X.X.xx.xx" and for IPv6 "X:X:xx:xx...".
+func maskIP(ip string) string {
+	if ip == "" {
+		return ""
+	}
+	if strings.Contains(ip, ".") {
+		parts := strings.Split(ip, ".")
+		if len(parts) >= 2 {
+			return fmt.Sprintf("%s.%s.xx.xx", parts[0], parts[1])
+		}
+	}
+	if strings.Contains(ip, ":") {
+		parts := strings.Split(ip, ":")
+		if len(parts) >= 2 {
+			masked := make([]string, len(parts)-2)
+			for i := range masked {
+				masked[i] = "xx"
+			}
+			return strings.Join(append([]string{parts[0], parts[1]}, masked...), ":")
+		}
+	}
+	return ip
 }
 
 // if needed to test the function
